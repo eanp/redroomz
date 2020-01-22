@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Text, View } from 'native-base'
 
-import { Login, Register, ForgotPass } from '../pages/'
+import { Login, Register, ForgotPass,Splash } from '../pages/'
 
 import MyIcon from 'react-native-vector-icons/MaterialIcons'
 import MeIcon from 'react-native-vector-icons/Entypo'
@@ -12,7 +12,7 @@ import MmIcon from 'react-native-vector-icons/AntDesign'
 import McIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MfIcon from 'react-native-vector-icons/Feather'
 
-import Search from '../pages/Search'
+import Search from '../pages/Search';
 
 class Pages extends React.Component {
     render() {
@@ -122,9 +122,10 @@ const BottomNav = createBottomTabNavigator({
 
 const SwitchNav = createSwitchNavigator({
     BottomNav,
-    AuthStack
+    AuthStack,
+    Splash: { screen: Splash },
 }, {
-    initialRouteName: 'AuthStack',
+    initialRouteName: 'BottomNav',
 })
 
 const AppContainer = createAppContainer(SwitchNav)

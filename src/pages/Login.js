@@ -23,7 +23,8 @@ function Login(props) {
 //   }, [props.auth.token])
 
   const postLogin = async ()=>{
-   //  await props.dispatch(getAuth(input))
+   //  await props.dispatch(getAuth(input)
+    props.navigation.navigate('Search')
     console.log(props.auth)
     if(props.auth.status.success) props.navigation.navigate('Home')
     else if(props.auth.isError) {Toast.show({

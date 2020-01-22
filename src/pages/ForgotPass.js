@@ -42,7 +42,8 @@ function ForgotPass(props) {
     <Container >
       <Header transparent >
         <Left style={{ justifyContent: 'center', flex: 1 }}>
-          <Icon name="arrow-back" type='MaterialIcons' />
+          <Icon onPress={()=>props.navigation.goBack()}
+          name="arrow-back" type='MaterialIcons' />
 
         </Left>
         <Body style={{ justifyContent: 'center', flex: 6, marginTop: 30 }}>
@@ -80,21 +81,25 @@ function ForgotPass(props) {
 
           <Button block rounded danger
             onPress={postLogin}
-            style={{ paddingBottom: 4, marginHorizontal: 8, backgroundColor:'red' }}>
+            style={{ paddingBottom: 4, marginHorizontal: 8, backgroundColor: 'red' }}>
             <Text style={{ color: '#fff' }}> Send </Text>
           </Button>
         </Form>
       </Content>
-      <ReactNativeModal isVisible={modalVisible}>
-          <View style={{ flex: 1 }}>
-            <Spinner />
-            <Text>Change password instruction has been send to your email</Text>
-            <Button onPress={()=>props.navigation.goBack()}>
-              <Text>finish</Text>
-            </Button>
-          </View>
-        </ReactNativeModal>
- 
+      <ReactNativeModal isVisible={modalVisible}  >
+        <View style={{  }}>
+          <Spinner />
+        </View>
+
+        <View style={{backgroundColor:'#eee', padding:16, }}>
+          <Text>Change password instruction has been send to your email</Text>
+          <Button style={{borderRadius:4, backgroundColor:'red'}}
+           onPress={() => setModalVisible(false)}>
+            <Text>finish</Text>
+          </Button>
+        </View>
+      </ReactNativeModal>
+
     </Container>
   );
 }

@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import Router from './src/config/config'
+import Router from './src/config/router'
 
 
 export default class App extends Component {
