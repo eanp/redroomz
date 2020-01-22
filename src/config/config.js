@@ -8,6 +8,7 @@ import MyIcon from 'react-native-vector-icons/MaterialIcons'
 import MeIcon from 'react-native-vector-icons/Entypo'
 import MmIcon from 'react-native-vector-icons/AntDesign'
 import McIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MfIcon from 'react-native-vector-icons/Feather'
 
 
 class Pages extends React.Component {
@@ -19,7 +20,6 @@ class Pages extends React.Component {
         )
     }
 }
-
 
 
 const SearchNav = createStackNavigator({
@@ -66,7 +66,7 @@ const BottomNav = createBottomTabNavigator({
         screen: SearchNav,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
-                return <MeIcon name='windows-store' size={25} color={tintColor} />;
+                return <McIcon name='percent' size={25} color={tintColor} />;
             },
         },
     },
@@ -74,7 +74,7 @@ const BottomNav = createBottomTabNavigator({
         screen: SearchNav,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
-                return <MeIcon name='windows-store' size={25} color={tintColor} />;
+                return <MeIcon name='archive' size={25} color={tintColor} />;
             },
         },
     },
@@ -82,7 +82,7 @@ const BottomNav = createBottomTabNavigator({
         screen: SearchNav,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
-                return <MeIcon name='windows-store' size={25} color={tintColor} />;
+                return <MfIcon name='user' size={25} color={tintColor} />;
             },
         },
     },
@@ -93,11 +93,12 @@ const BottomNav = createBottomTabNavigator({
         labelStyle: {
             marginBottom: 5
         },
-        activeTintColor: '#43AB4A',
+        activeTintColor: '#C81E1F',
         inactiveTintColor: '#545454',
         style: {
             backgroundColor: 'white',
             borderTopColor: 'transparent',
+            marginVertical: 3
         }
     }
 })
