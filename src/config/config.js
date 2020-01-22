@@ -10,6 +10,7 @@ import MmIcon from 'react-native-vector-icons/AntDesign'
 import McIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MfIcon from 'react-native-vector-icons/Feather'
 
+import Search from '../pages/Search'
 
 class Pages extends React.Component {
     render() {
@@ -24,7 +25,7 @@ class Pages extends React.Component {
 
 const SearchNav = createStackNavigator({
     Search: {
-        screen: Pages,
+        screen: Search,
         navigationOptions: {
             headerShown: false,
         },
@@ -94,7 +95,7 @@ const BottomNav = createBottomTabNavigator({
             marginBottom: 5
         },
         activeTintColor: '#C81E1F',
-        inactiveTintColor: '#545454',
+        inactiveTintColor: '#ACACAC',
         style: {
             backgroundColor: 'white',
             borderTopColor: 'transparent',
