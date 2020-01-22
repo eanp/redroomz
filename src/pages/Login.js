@@ -66,7 +66,7 @@ function Login(props) {
               value={input.email}
               selectionColor={'red'}
               keyboardType='email-address'
-              onChangeText={(e)=>setInput({...input,username:e})}
+              onChangeText={(e)=>setInput({...input,email:e})}
               />
           </Item>
           <Item  style={{ marginBottom: 16, backgroundColor:'#eee' }}>
