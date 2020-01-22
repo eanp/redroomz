@@ -13,6 +13,9 @@ import MoIcon from 'react-native-vector-icons/Octicons'
 import MaIcon from 'react-native-vector-icons/AntDesign'
 import MeIcon from 'react-native-vector-icons/Entypo'
 import MmIcon from 'react-native-vector-icons/AntDesign'
+import McIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MfIcon from 'react-native-vector-icons/FontAwesome5'
+import MzIcon from 'react-native-vector-icons/Ionicons'
 
 import imagebanner from '../assets/banner.jpg'
 import whitelogo from '../assets/rrwhite.png'
@@ -113,6 +116,95 @@ class Headbutton extends Component {
     }
 }
 
+class City extends Component {
+    render() {
+        return (
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <TouchableOpacity style={{}}>
+                    <Image style={{ height: 60, width: 60, backgroundColor: 'red', borderRadius: 40, marginHorizontal: 5 }} source={imagebanner} />
+                </TouchableOpacity>
+                <View style={{}}>
+                    <Text style={{ fontSize: 10 }}>City</Text>
+                </View>
+            </View>
+        )
+    }
+}
+
+class Travel extends Component {
+    render() {
+        return (
+            <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 50, marginTop: 10 }}>
+                <TouchableOpacity style={{}}>
+                    <Image style={{ height: 180, width: 280, backgroundColor: 'red', borderRadius: 10, marginHorizontal: 5 }} source={imagebanner} />
+                </TouchableOpacity>
+                <View style={{ left: -75 }}>
+                    <Text style={{ fontSize: 16 }}>City</Text>
+                    <Text style={{ fontSize: 12, color: '#ddd' }}>Posted on: 21 Jan 2020</Text>
+                </View>
+            </View>
+        )
+    }
+}
+
+class Servicebar extends Component {
+    render() {
+        return (
+            <View style={{ flexDirection: 'row', marginVertical: 20 }}>
+                <View style={{ flex: 1 }}>
+                    <View style={styles.iconservicetag}>
+                        <MfIcon name="wifi" style={styles.iconservice} />
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', left: -4 }}>
+                        <Text style={styles.textservice}>Free Wifi</Text>
+                    </View>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <View style={styles.iconservicetag}>
+                        <MeIcon name="tv" style={styles.iconservice} />
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', left: 3 }}>
+                        <Text style={styles.textservice}>Satelite Television</Text>
+                    </View>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <View style={styles.iconservicetag}>
+                        <McIcon name="cup-water" style={styles.iconservice} />
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', left: 8 }}>
+                        <Text style={styles.textservice}>Mineral Water</Text>
+                    </View>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <View style={styles.iconservicetag}>
+                        <MzIcon name="ios-bed" style={styles.iconservice} />
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', left: 10 }}>
+                        <Text style={styles.textservice}>Clean Linen</Text>
+                    </View>
+                </View>
+                <View style={{ flex: 1 }}>
+
+                    <View style={styles.iconservicetag}>
+                        <MfIcon name="bath" style={styles.iconservice} />
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', left: 10 }}>
+                        <Text style={styles.textservice}>Clean Washroom</Text>
+                    </View>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <View style={styles.iconservicetag}>
+                        <McIcon name="water-pump" style={styles.iconservice} />
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center', left: 1 }}>
+                        <Text style={styles.textservice}>Toiletries</Text>
+                    </View>
+                </View>
+            </View>
+        )
+    }
+}
+
 export default class App extends Component {
     render() {
         return (
@@ -153,11 +245,37 @@ export default class App extends Component {
                                 <NearbyProperties />
                             </ScrollView>
                         </View>
-
-
+                        <View>
+                            <Text style={{ marginTop: 20, marginBottom: -10, left: 3, fontSize: 16 }}>RedRoomz Service Guarantee</Text>
+                        </View>
+                        <Servicebar />
+                        <View style={{ marginTop: 10 }}>
+                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                                <City />
+                                <City />
+                                <City />
+                                <City />
+                                <City />
+                                <City />
+                                <City />
+                            </ScrollView>
+                        </View>
+                        <View style={{}}>
+                            <Text style={{ marginTop: 30, left: 3, fontSize: 16 }}>
+                                Travel Stories
+                            </Text>
+                        </View>
+                        <View>
+                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                                <Travel />
+                                <Travel />
+                                <Travel />
+                                <Travel />
+                            </ScrollView>
+                        </View>
                     </View>
                 </ScrollView>
-            </View>
+            </View >
         )
     }
 }
@@ -171,5 +289,22 @@ const styles = StyleSheet.create({
     icontag: {
         flex: 2,
         marginHorizontal: 5
+    },
+    iconservice: {
+        fontSize: 24,
+        color: '#FB4D4E',
+    },
+    iconservicetag: {
+        backgroundColor: '#ddd',
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 6
+    },
+    textservice: {
+        top: 5,
+        fontSize: 11
     }
 })
