@@ -92,49 +92,57 @@ function Register(props) {
           </Button>
         </Row>
 
+
+        <Row style={{marginTop:8, justifyContent:'center', alignItems:'center'}}>
+           <Text style={{color:'#666'}} > - - - - - - - - - - - - - - - - </Text>
+           <Text style={{color:'#666'}}>or SignUpwith</Text>
+           <Text style={{color:'#666'}}> - - - - - - - - - - - - - - - - </Text>
+        </Row>
+
+
         <Form style={{ marginBottom: 'auto', marginTop: 16, paddingRight: 16 }} >
           <Row >
 
-            <Item style={{ marginBottom: 16, backgroundColor: '#eee', borderRadius: 4, flex:1 }} >
+            <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex:1 }} >
               <Input placeholder="First Name"
                 style={{ paddingLeft: 8, flex: 1 }}
                 value={input.first_name}
-                selectionColor={'red'}
+                selectionColor={'#c00'}
                 onChangeText={(e) => setInput({ ...input, first_name: e })}
               />
             </Item>
-            <Item style={{ marginBottom: 16, backgroundColor: '#eee', borderRadius: 4, flex:1 }} >
+            <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex:1 }} >
               <Input placeholder="Last Name"
                 value={input.last_name}
                 style={{ paddingLeft: 8, flex: 1, paddingLeft: 16 }}
-                selectionColor={'red'}
+                selectionColor={'#c00'}
                 onChangeText={(e) => setInput({ ...input, last_name: e })}
               />
             </Item>
 
           </Row>
-          <Item style={{ marginBottom: 16, backgroundColor: '#eee', borderRadius: 4 }} >
+          <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4 }} >
             <Input placeholder="Email ID"
               style={{ paddingLeft: 8 }}
               value={input.email}
-              selectionColor={'red'}
+              selectionColor={'#c00'}
               keyboardType='email-address'
               onChangeText={(e) => setInput({ ...input, email: e })}
             />
           </Item>
-          <Item style={{ marginBottom: 16, backgroundColor: '#eee', borderRadius: 4 }}>
+          <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4 }}>
             <Input secureTextEntry={true} placeholder="Enter Password"
               style={{ paddingLeft: 8 }}
               value={input.password}
               onChangeText={(e) => setInput({ ...input, password: e })}
             />
           </Item>
-          <Item inlineLabel style={{ marginBottom: 16, backgroundColor: '#eee' }} >
+          <Item inlineLabel style={{ marginBottom: 16, backgroundColor: '#f9f9f9' }} >
             <Label
               style={{ paddingLeft: 8 }}>+62</Label>
             <Input placeholder="Enter Phone Number"
               value={input.phone}
-              selectionColor={'red'}
+              selectionColor={'#c00'}
               keyboardType='phone-pad'
               onChangeText={(e) => setInput({ ...input, phone: e })}
             />

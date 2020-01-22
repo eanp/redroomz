@@ -60,16 +60,16 @@ function Login(props) {
         </Header>
 
         <Form style={{ marginBottom: 'auto', marginTop:16, paddingRight:16}} >
-          <Item style={{ marginBottom: 16,backgroundColor:'#eee' }} >
+          <Item style={{ marginBottom: 16,backgroundColor:'#f9f9f9' }} >
             <Input placeholder="Email ID"
               style={{ paddingLeft:8 }} 
               value={input.email}
-              selectionColor={'red'}
+              selectionColor={'#c00'}
               keyboardType='email-address'
               onChangeText={(e)=>setInput({...input,email:e})}
               />
           </Item>
-          <Item  style={{ marginBottom: 16, backgroundColor:'#eee' }}>
+          <Item  style={{ marginBottom: 16, backgroundColor:'#f9f9f9' }}>
             <Input secureTextEntry={true} placeholder="Password"
               style={{ paddingLeft:8 }} 
               value={input.password}

@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Text, View } from 'native-base'
 
-import { Login, Register } from '../pages/'
+import { Login, Register, ForgotPass } from '../pages/'
 
 import MyIcon from 'react-native-vector-icons/MaterialIcons'
 import MeIcon from 'react-native-vector-icons/Entypo'
@@ -27,6 +27,7 @@ const AuthStack = createStackNavigator(
     {
       Login: { screen: Login },
       Register: { screen: Register },
+      ForgotPass: { screen: ForgotPass },
     },
     {
       headerMode: 'none',
