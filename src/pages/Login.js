@@ -54,69 +54,72 @@ function Login(props) {
           </Body>
           <Right style={{justifyContent:'center', flex:2}} >
             <Button  transparent style={{marginTop:10}} >
-              <Text style={{color:'#666', fontWeight:'200'}}>Skip</Text>
+              <Text style={{color:'#666'}}  >Skip</Text>
             </Button>
           </Right>
         </Header>
 
-        <Form style={{ marginBottom: 'auto', marginTop:16, paddingRight:16}} >
-          <Item style={{ marginBottom: 16,backgroundColor:'#f9f9f9' }} >
-            <Input placeholder="Email ID"
-              style={{ paddingLeft:8 }} 
-              value={input.email}
-              selectionColor={'#c00'}
-              keyboardType='email-address'
-              onChangeText={(e)=>setInput({...input,email:e})}
-              />
-          </Item>
-          <Item  style={{ marginBottom: 16, backgroundColor:'#f9f9f9' }}>
-            <Input secureTextEntry={true} placeholder="Password"
-              style={{ paddingLeft:8 }} 
-              value={input.password}
-              onChangeText={(e)=>setInput({...input,password:e})}
-              />
-          </Item>
-
-          <Button dark transparent  
-          onPress={() => props.navigation.navigate('ForgotPass')}
-            style={{ marginBottom: 8,marginLeft:'auto' }}><Text> Forgot Password </Text>
-          </Button>
-          <Button block danger
-          onPress={() =>postLogin() }
-          style={{ marginBottom: 16, marginHorizontal: 10 }}>
-            <Text style={{color:'#fff'}}> SignIn </Text>
-          </Button>
-        </Form>
-
-        
-        <Row style={{marginVertical:-16, justifyContent:'center', alignItems:'center'}}>
-           <Text style={{color:'#666'}} > - - - - - - - - - - - - - - - - </Text>
-           <Text style={{color:'#666'}}>or SignIn with</Text>
-           <Text style={{color:'#666'}}> - - - - - - - - - - - - - - - - </Text>
-        </Row>
-
-
-        <Row style={{justifyContent:'space-around'}}>
-        <Button icon danger  >
-            <Icon name='ios-google' />
-            <Text>Google</Text>
-          </Button>
-        <Button iconLeft primary>
-            <Icon name='ios-facebook' />
-            <Text>Facebook</Text>
-          </Button>
-        </Row>
-        <Row style={{justifyContent:'center', marginTop:60}}>
-           <Text style={{alignSelf:'baseline', paddingTop:11}} >
-           Dont have Account ? 
-           </Text>
-           <Button block dark transparent style={{marginLeft:-10}}
-             onPress={() => props.navigation.navigate('Register')}> 
-             <Text>
-                Sign Here 
+        <Content padder>
+          <Form style={{ marginBottom: 'auto', marginTop:16, paddingRight:16}} >
+            <Item style={{ marginBottom: 16,backgroundColor:'#f9f9f9' }} >
+              <Input placeholder="Email ID"
+                style={{ paddingLeft:8 }} 
+                value={input.email}
+                selectionColor={'#c00'}
+                keyboardType='email-address'
+                onChangeText={(e)=>setInput({...input,email:e})}
+                />
+            </Item>
+            <Item  style={{ marginBottom: 16, backgroundColor:'#f9f9f9' }}>
+              <Input secureTextEntry={true} placeholder="Password"
+                style={{ paddingLeft:8 }} 
+                value={input.password}
+                onChangeText={(e)=>setInput({...input,password:e})}
+                />
+            </Item>
+  
+            <Button dark transparent  
+            onPress={() => props.navigation.navigate('ForgotPass')}
+              style={{ marginBottom: 8,marginLeft:'auto'}}>
+                <Text style={{color: '#777'}}> Forgot Password ? </Text>
+            </Button>
+            <Button block 
+            onPress={() =>postLogin() }
+            style={{ marginBottom: 16, marginHorizontal: 10,borderRadius: 4, backgroundColor:'red' }}>
+              <Text style={{color:'#fff'}}> SignIn </Text>
+            </Button>
+          </Form>
+  
+          
+          <Row style={{justifyContent:'center', alignItems:'center'}}>
+             <Text style={{color:'#666'}} > - - - - - - - - - - - - - - - - </Text>
+             <Text style={{color:'#666'}}>or SignIn with</Text>
+             <Text style={{color:'#666'}}> - - - - - - - - - - - - - - - - </Text>
+          </Row>
+  
+  
+          <Row style={{justifyContent:'space-around',marginTop:16}}>
+          <Button icon danger style={{borderRadius: 4}} >
+              <Icon name='google' type='MaterialCommunityIcons' style={{fontSize:16}} />
+              <Text>Google</Text>
+            </Button>
+          <Button iconLeft primary style={{borderRadius: 4}}>
+              <Icon name='facebook' type='MaterialCommunityIcons' style={{fontSize:16}} />
+              <Text>Facebook</Text>
+            </Button>
+          </Row>
+          <Row style={{justifyContent:'center', marginTop:120}}>
+             <Text style={{alignSelf:'baseline', paddingTop:11,color: '#777',}} >
+             Dont have Account ? 
              </Text>
-           </Button>
-        </Row>
+             <Button block dark transparent style={{marginLeft:-10}}
+               onPress={() => props.navigation.navigate('Register')}> 
+               <Text style={{textDecorationLine:'underline'}}>
+                  Sign Here 
+               </Text>
+             </Button>
+          </Row>
+        </Content>
     </Container>
   );
 }

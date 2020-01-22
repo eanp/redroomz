@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { Component, Fragment, useState, useEffect } from 'react';
-import { View, StyleSheet, Image, ImageBackground } from 'react-native';
+import { View, StyleSheet, Image, ImageBackground, Modal } from 'react-native';
 import { Button, Container, Header, Title, Body, Item, Form, Label, Input, Text, Content, Icon, H1, Toast, Left, Right, Thumbnail, Row } from 'native-base';
 import RNRecaptcha from 'rn-recaptcha';
 
@@ -17,15 +17,11 @@ const style = StyleSheet.create({
 
 function Register(props) {
   const [input, setInput] = useState({})
-
-  //   useEffect(() => {
-  //     if (props.auth.token) {
-  //       props.navigation.navigate('Home')
-  //     } 
-  //   }, [props.auth.token])
+  const [modalVisible, setModalVisible] = useState(false)
 
   const postLogin = async () => {
     //  await props.dispatch(getAuth(input))
+    setModalVisible(true)
     console.log(props.auth)
     if (props.auth.status.success) props.navigation.navigate('Home')
     else if (props.auth.isError) {
@@ -41,22 +37,11 @@ function Register(props) {
     })
   }
 
-  const onMessage = event => {
-    if (event && event.nativeEvent.data) {
-      console.log(event.nativeEvent.data)
-    } else if (event.nativeEvent.data === 'expired') {
-      console.log('this is when you expired')
-    } else if (event.nativeEvent.data === 'error') {
-      console.log('this is when error')
-    } else {
-      console.log('other')
-    }
-  };
+
 
   return (
     <Container >
       {/* <Content padder contentContainerStyle={{ flexGrow: 1, backgroundColor:'fff', opacity:1 }}> */}
-      <Content>
         <Header transparent >
           <Left style={{ justifyContent: 'center', flex: 1 }}>
               <Icon name="arrow-back" type='MaterialIcons' />
@@ -69,13 +54,14 @@ function Register(props) {
               <Text style={{ fontWeight: 'bold', color: 'red', fontSize: 24 }}>Doorz</Text>
             </Title>
           </Body>
-          <Right style={{ justifyContent: 'center', flex: 2 }} >
+          <Right style={{ justifyContent: 'center', flex: 3 }} >
             <Button transparent style={{ marginTop: 10 }} >
-              <Text style={{ color: '#666', fontWeight: '200' }}>Skip</Text>
+              <Text style={{ color: '#666'}} note>Skip</Text>
             </Button>
           </Right>
         </Header>
 
+        <Content padder>
         <Text style={{textAlign:'center', marginVertical:24}}>
           Sign Up Now And Get <Text style={{color:'red', fontWeight:'700'}}>
             150000 Red Cash
@@ -83,11 +69,11 @@ function Register(props) {
         </Text>
         <Row style={{ justifyContent: 'space-around' }}>
           <Button icon danger  >
-            <Icon name='ios-google' />
+            <Icon name='google' type='MaterialCommunityIcons' style={{fontSize:16}} />
             <Text>Google</Text>
           </Button>
           <Button iconLeft primary>
-            <Icon name='ios-facebook' />
+            <Icon name='facebook' type='MaterialCommunityIcons' style={{fontSize:16}} />
             <Text>Facebook</Text>
           </Button>
         </Row>
@@ -99,10 +85,9 @@ function Register(props) {
            <Text style={{color:'#666'}}> - - - - - - - - - - - - - - - - </Text>
         </Row>
 
-
+          {/* FORM */}
         <Form style={{ marginBottom: 'auto', marginTop: 16, paddingRight: 16 }} >
           <Row >
-
             <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex:1 }} >
               <Input placeholder="First Name"
                 style={{ paddingLeft: 8, flex: 1 }}
@@ -116,11 +101,11 @@ function Register(props) {
                 value={input.last_name}
                 style={{ paddingLeft: 8, flex: 1, paddingLeft: 16 }}
                 selectionColor={'#c00'}
-                onChangeText={(e) => setInput({ ...input, last_name: e })}
-              />
+                onChangeText={(e) => setInput({ ...input, last_name: e })}/>
             </Item>
-
           </Row>
+
+
           <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4 }} >
             <Input placeholder="Email ID"
               style={{ paddingLeft: 8 }}
@@ -148,33 +133,34 @@ function Register(props) {
             />
           </Item>
 
-          {/* <ConfirmGoogleCaptcha
-            siteKey={'6Lf4mNEUAAAAAFcwQkmFXuENGiufjQ07CFPQm35B'}
-            baseUrl={'example.com'}
-            languageCode='en'
-            onMessage={onMessage}
-          /> */}
-          {/* <RNRecaptcha 
-          siteKey={'6Lf4mNEUAAAAAFcwQkmFXuENGiufjQ07CFPQm35B'}
-          onMessage={onMessage} url={'example.com'}/> */}
+          {/* BUTTON */}
           <Button block danger
             onPress={() => postLogin()}
-            style={{ paddingBottom: 4, marginHorizontal: 50 }}>
+            style={{marginLeft:8, marginHorizontal:0 ,backgroundColor:'red' }}>
             <Text style={{ color: '#fff' }}> SignUp </Text>
           </Button>
         </Form>
         <Row style={{ justifyContent: 'center', marginTop: 60 }}>
-          <Text style={{ alignSelf: 'baseline', paddingTop: 11 }} >
+          <Text style={{ alignSelf: 'baseline', paddingTop: 11,color: '#777' }} >
             Already have an Account ?
            </Text>
           <Button block dark transparent style={{ marginLeft: -10 }}
             onPress={() => props.navigation.navigate('Login')}>
-            <Text>
+            <Text style={{textDecorationLine:'underline'}} >
               Sign Here
              </Text>
           </Button>
         </Row>
       </Content>
+      <ReactNativeModal isVisible={modalVisible}>
+          <View style={{ flex: 1 }}>
+            <Spinner />
+            <Text>User has been created</Text>
+            <Button onPress={()=>props.navigation.goBack()}>
+              <Text>Login</Text>
+            </Button>
+          </View>
+        </ReactNativeModal>
     </Container>
   );
 }
