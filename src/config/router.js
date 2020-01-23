@@ -4,7 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Text, View } from 'native-base'
 
-import { Login, Register, ForgotPass,Splash } from '../pages/'
+import { Login, Register, ForgotPass, Splash, Profile, ChangePassword, EditProfile } from '../pages/'
 
 import MyIcon from 'react-native-vector-icons/MaterialIcons'
 import MeIcon from 'react-native-vector-icons/Entypo'
@@ -27,16 +27,16 @@ class Pages extends React.Component {
 
 const AuthStack = createStackNavigator(
     {
-      Login: { screen: Login },
-      Register: { screen: Register },
-      ForgotPass: { screen: ForgotPass },
+        Login: { screen: Login },
+        Register: { screen: Register },
+        ForgotPass: { screen: ForgotPass },
+        ChangePassword: { screen: ChangePassword },
     },
     {
-      headerMode: 'none',
-      initialRouteName: 'Login',
+        headerMode: 'none',
+        initialRouteName: 'Login',
     },
-  );
-  
+);
 
 
 const SearchNav = createStackNavigator({
@@ -96,7 +96,7 @@ const BottomNav = createBottomTabNavigator({
         },
     },
     Profile: {
-        screen: SearchNav,
+        screen: Profile,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 return <MfIcon name='user' size={25} color={tintColor} />;
@@ -105,7 +105,7 @@ const BottomNav = createBottomTabNavigator({
     },
 
 }, {
-    initialRouteName: 'Search',
+    initialRouteName: 'Profile',
     tabBarOptions: {
         labelStyle: {
             marginBottom: 5
@@ -120,12 +120,23 @@ const BottomNav = createBottomTabNavigator({
     }
 })
 
+const AppStack = createStackNavigator(
+    {
+        BottomNav,
+        ChangePassword: { screen: ChangePassword },
+        EditProfile: { screen: EditProfile },
+    },{
+        headerMode:'none'
+        , initialRouteName:'BottomNav'
+    }
+)
+
 const SwitchNav = createSwitchNavigator({
-    BottomNav,
+    AppStack,
     AuthStack,
     Splash: { screen: Splash },
 }, {
-    initialRouteName: 'BottomNav',
+    initialRouteName: 'AppStack',
 })
 
 const AppContainer = createAppContainer(SwitchNav)
