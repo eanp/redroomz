@@ -2,27 +2,19 @@ import React, { Component } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Text, View } from 'native-base'
+import { Text } from 'native-base'
 
-import { Login, Register, ForgotPass, Splash, Profile, ChangePassword, EditProfile } from '../pages/'
+import {
+    Login, Register, ForgotPass, Splash, Profile,
+    ChangePassword, EditProfile,SearchHotels
+} from '../pages/'
 
-import MyIcon from 'react-native-vector-icons/MaterialIcons'
 import MeIcon from 'react-native-vector-icons/Entypo'
 import MmIcon from 'react-native-vector-icons/AntDesign'
 import McIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MfIcon from 'react-native-vector-icons/Feather'
 
 import Search from '../pages/Search';
-
-class Pages extends React.Component {
-    render() {
-        return (
-            <>
-                <Text>pages</Text>
-            </>
-        )
-    }
-}
 
 
 const AuthStack = createStackNavigator(
@@ -105,7 +97,7 @@ const BottomNav = createBottomTabNavigator({
     },
 
 }, {
-    initialRouteName: 'Profile',
+    initialRouteName: 'Search',
     tabBarOptions: {
         labelStyle: {
             marginBottom: 5
@@ -124,11 +116,12 @@ const AppStack = createStackNavigator(
     {
         BottomNav,
         ChangePassword: { screen: ChangePassword },
+        SearchHotels: { screen: SearchHotels },
         EditProfile: { screen: EditProfile },
-    },{
-        headerMode:'none'
-        , initialRouteName:'BottomNav'
-    }
+    }, {
+    headerMode: 'none'
+    , initialRouteName: 'BottomNav'
+}
 )
 
 const SwitchNav = createSwitchNavigator({

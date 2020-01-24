@@ -8,7 +8,7 @@ export default function Profile(props) {
       <Container>
          <Content>
             <Button light rounded icon style={{ position: 'absolute', top: 150, right: 40 , zIndex:999 }}
-            onPress={()=>props.navigation.navigate('EditProfile')} >
+            onPress={()=> props.navigation.navigate('EditProfile')} >
                <Icon name='edit' type='MaterialIcons' />
             </Button>
             <ImageBackground
@@ -47,9 +47,7 @@ export default function Profile(props) {
                <ListItemSetting title='Refer And Earn' />
                <ListItemSetting title='Change Password' />
                <ListItemSetting title='Contact Us' />
-               <ListItemSetting title='Logout' />
-               
-               
+               <ListItemSetting title='Logout' />               
             </List>
          </Content>
       </Container>

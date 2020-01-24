@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {
-    Text, View, StyleSheet, StatusBar, ScrollView,
-    TouchableOpacity, TextInput, Image, ImageBackground
+    Text, View, StyleSheet,  ScrollView,
+    TouchableOpacity,  Image, ImageBackground
 } from 'react-native'
 import {
     Container, Header, Content, Card, CardItem, Icon,
@@ -106,7 +106,8 @@ class Headcalendar extends Component {
 class Headbutton extends Component {
     render() {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={()=>this.props.navigation.navigate('SearchHotels')}>
 
                 <View style={{ backgroundColor: '#FB4D4E', height: 50, marginTop: 15, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>Search RedRoomz</Text>
@@ -216,7 +217,7 @@ export default class App extends Component {
                             <Headbar />
                             <Headsearch />
                             <Headcalendar />
-                            <Headbutton />
+                            <Headbutton navigation={this.props.navigation} />
                         </View>
                     </ImageBackground>
                     <View style={{ flex: 1, backgroundColor: "white", marginTop: 10, marginHorizontal: 15 }}>

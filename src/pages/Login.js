@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import { View, StyleSheet, Image} from 'react-native';
 import { Button, Container, Header, Title, Body, Item, Form, Label, Input, Text, Content, Icon, H1, Toast, Row, Right, Thumbnail, Left } from 'native-base';
@@ -24,7 +23,7 @@ function Login(props) {
 
   const postLogin = async ()=>{
    //  await props.dispatch(getAuth(input)
-    props.navigation.navigate('Search')
+    props.navigation.navigate('Profile')
     console.log(props.auth)
     if(props.auth.status.success) props.navigation.navigate('Home')
     else if(props.auth.isError) {Toast.show({

@@ -5,7 +5,7 @@ import Splash from './Splash'
 import Profile from './Profile'
 import EditProfile from './Profile/EditProfile'
 import ChangePassword from './Profile/ChangePassword'
+import SearchHotels from './SearchHotels'
 
-const Pages = {}
 
-export {Login, Register, ForgotPass, Splash, Profile, EditProfile, ChangePassword};
+export {Login,SearchHotels, Register, ForgotPass, Splash, Profile, EditProfile, ChangePassword};
