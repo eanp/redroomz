@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import {  StyleSheet, Image } from 'react-native';
-import {  Container, Header, Title, Body, Item, Form, Label, Input, Text, DatePicker, Content, Icon, H1, Toast, Row, Right, Thumbnail, Left } from 'native-base';
+import {  StyleSheet, Image ,View} from 'react-native';
+import {  Container, Header, Title, Body,  Text,  Content, Icon,  Row, Right, Thumbnail, Left, ListItem, List } from 'native-base';
 import { connect } from 'react-redux';
 
 const style = StyleSheet.create({
@@ -21,15 +21,52 @@ function RedCash(props) {
           <Icon onPress={() => props.navigation.goBack()}
             name="arrow-back" type='MaterialIcons' />
         </Left>
-        <Body style={{ flex: 2 }}>
+        <Body style={{ flex: 6 }}>
           <Title style={{ color: '#000', alignSelf: 'center' }} >RedCash Transaction</Title>
         </Body>
-        <Right style={{ justifyContent: 'center', flex: 1 }} >
-        </Right>
+        <Right style={{ flex: 1 }} ></Right>
       </Header>
-      <Content padder>
-        
-         
+      <Content>
+        <ListItem noBorder>
+          <Left>
+            <Body>
+
+            <Text>My Red Cash</Text>
+            <Text style={{fontSize:24 ,fontWeight:'bold'}} >150000</Text>
+            </Body>
+          </Left>
+          <Right>
+            <Text style={{color:'#f00', textDecorationLine:'underline'}}>Top Up</Text>
+          </Right>
+        </ListItem>
+         <View style={{height:8,backgroundColor:'#f00',}} />
+         <ListItem itemDivider>
+          <Left>
+            <Text note>All Transaction</Text>
+          </Left>
+          <Icon name='list' />
+         </ListItem>
+         <ListItem >
+          <Body style={{flex:3}}>
+            <Text style={{fontWeight:'bold'}}>Booking Hotel</Text>
+            <Text>At hostel near mall 123</Text>
+            <Text note >Used On : 24 Jan 2019</Text>
+          </Body>
+          <Right style={{flex:1}}>
+            <Text style={{color:'#f00', fontSize:12}}>+150000</Text>
+            <Text style={{color:'#f00', fontSize:12}}>Used</Text>
+          </Right>
+        </ListItem>
+         <ListItem >
+          <Body style={{flex:3}}>
+            <Text style={{fontWeight:'bold'}}>Reward</Text>
+            <Text note >Used On : 24 Jan 2019</Text>
+          </Body>
+          <Right style={{flex:1}}>
+            <Text style={{color:'#0f0', fontSize:12}}>+150000</Text>
+            <Text style={{color:'#0f0', fontSize:12}}>Reward</Text>
+          </Right>
+        </ListItem>
       </Content>
     </Container>
   );

@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Text, Badge, Thumbnail, Left, Right, Icon, Row, Button, Body, } from 'native-base';
-import { ImageBackground, Image, View } from 'react-native';
+import { ImageBackground, Image, View , StyleSheet} from 'react-native';
 
+
+const style = StyleSheet.create({
+  profile:{ fontWeight: 'bold', fontSize: 24, color: '#fff', marginTop: 'auto', marginBottom: 40, alignSelf: 'center' },
+   cover: { height: 600, width: 600, borderRadius: 100, marginTop: -400, alignSelf: 'center' },
+   picture:{ width: 80, height: 80, alignSelf: 'center', marginTop: -30 },
+   edit:{ position: 'absolute', top: 150, right: 50  }
+})
 
 export default function Profile(props) {
    return (
       <Container>
          <Content>
-            <Button light rounded icon style={{ position: 'absolute', top: 150, right: 40 , zIndex:999 }}
+            <Button light rounded icon style={style.edit}
             onPress={()=> props.navigation.navigate('EditProfile')} >
                <Icon name='edit' type='MaterialIcons' />
             </Button>
             <ImageBackground
                imageStyle={{ borderRadius: 300 }}
                source={require('../../assets/banner.jpg')}
-               style={{ height: 600, width: 600, borderRadius: 100, marginTop: -400, alignSelf: 'center' }}
-            >
-               <Text style={{ fontWeight: 'bold', fontSize: 24, color: '#fff', marginTop: 'auto', marginBottom: 40, alignSelf: 'center' }}>
+               style={style.cover}>
+               <Text style={style.profile}>
                   Profile</Text>
             </ImageBackground>
             <Image
                source={require('../../assets/banner.jpg')}
-               borderRadius={30}
-               style={{ width: 60, height: 60, alignSelf: 'center', marginTop: -30 }}
+               borderRadius={40}
+               style={style.picture}
             />
 
             <View style={{ alignSelf: 'center', alignItems: 'center' }}>
@@ -32,8 +38,9 @@ export default function Profile(props) {
             </View>
 
             <List>
-               <ListItemSetting title='My RedCash' itemHeader />
-               <ListItemSetting title='Loyalty Program' left={<Badge danger ><Text>New</Text></Badge>} />
+               <ListItemSetting title='My RedCash' itemHeader onPress={()=>props.navigation.navigate('RedCash')} />
+               <ListItemSetting title='Loyalty Program' 
+                  left={<Badge danger ><Text>New</Text></Badge>} />
                <ListItemSetting title='Choose Default Payment Method' />
                <ListItemSetting title='Become a RedClub Member' />
                <ListItemSetting title='Country & Language'
