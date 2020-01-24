@@ -1,8 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { Component, Fragment, useState, useEffect } from 'react';
-import { View, StyleSheet, Image, ImageBackground, Modal } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Button, Container, Header, Title, Body, Item, Form, Label, Input, Text, Content, Icon, H1, Toast, Left, Right, Thumbnail, Row, Spinner } from 'native-base';
-import RNRecaptcha from 'rn-recaptcha';
 
 import logo from '../assets/img/logo.png'
 import { connect } from 'react-redux';
@@ -100,7 +99,7 @@ function Register(props) {
             <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex: 1 }} >
               <Input placeholder="Last Name"
                 value={input.last_name}
-                style={{ paddingLeft: 8, flex: 1, paddingLeft: 16 }}
+                style={{ flex: 1, paddingLeft: 16 }}
                 selectionColor={'#c00'}
                 onChangeText={(e) => setInput({ ...input, last_name: e })} />
             </Item>

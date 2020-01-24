@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Text, View } from 'native-base'
+import { Text } from 'native-base'
 
-import { Login, Register, ForgotPass, Splash } from '../pages/'
+import {
+    Login, Register, ForgotPass, Splash, Profile,
+    ChangePassword, EditProfile,SearchHotels, RedCash
+} from '../pages/'
 
 import MeIcon from 'react-native-vector-icons/Entypo'
 import MmIcon from 'react-native-vector-icons/AntDesign'
@@ -18,49 +21,19 @@ import Offersdetail from '../pages/Offersdetail';
 import Bookings from '../pages/Bookings';
 import Detail from '../pages/Detail';
 
-class Pages extends React.Component {
-    render() {
-        return (
-            <>
-                <Text>pages</Text>
-            </>
-        )
-    }
-}
-
 
 const AuthStack = createStackNavigator(
     {
         Login: { screen: Login },
         Register: { screen: Register },
         ForgotPass: { screen: ForgotPass },
+        ChangePassword: { screen: ChangePassword },
     },
     {
         headerMode: 'none',
         initialRouteName: 'Login',
     },
 );
-
-const ProfileNav = createStackNavigator({
-    Profile: {
-        screen: Detail,
-        navigationOptions: {
-            headerShown: false,
-        },
-    },
-}, {
-    initialRouteName: 'Profile',
-})
-ProfileNav.navigationOptions = ({ navigation }) => {
-    let tabBarVisible = true;
-    if (navigation.state.index > 0) {
-        tabBarVisible = false;
-    }
-
-    return {
-        tabBarVisible,
-    }
-}
 
 const BookingsNav = createStackNavigator({
     Bookings: {
@@ -189,7 +162,7 @@ const BottomNav = createBottomTabNavigator({
         },
     },
     Profile: {
-        screen: ProfileNav,
+        screen: Profile,
         navigationOptions: {
             tabBarIcon: ({ tintColor }) => {
                 return <MfIcon name='user' size={25} color={tintColor} />;
@@ -213,12 +186,26 @@ const BottomNav = createBottomTabNavigator({
     }
 })
 
+const AppStack = createStackNavigator(
+    {
+        BottomNav,
+        ChangePassword: { screen: ChangePassword },
+        SearchHotels: { screen: SearchHotels },
+        EditProfile: { screen: EditProfile },
+        RedCash: { screen: RedCash },
+        DetailHotel:{screen:Detail}
+    }, {
+    headerMode: 'none'
+    , initialRouteName: 'BottomNav'
+}
+)
+
 const SwitchNav = createSwitchNavigator({
-    BottomNav,
+    AppStack,
     AuthStack,
     Splash: { screen: Splash },
 }, {
-    initialRouteName: 'BottomNav',
+    initialRouteName: 'AppStack',
 })
 
 const AppContainer = createAppContainer(SwitchNav)

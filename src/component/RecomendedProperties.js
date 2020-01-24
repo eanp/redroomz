@@ -43,7 +43,7 @@ export default class RecomendedProperties extends Component {
           marginRight: 7,
           color: 'white',
         }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetailHotel')}>
           <CardItem cardBody style={{borderRadius: 5, marginHorizontal: 10}}>
             <View style={{height: 120, width: 210}}>
               <Image

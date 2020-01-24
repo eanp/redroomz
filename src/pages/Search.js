@@ -1,16 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
 import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-} from 'react-native';
-import { withNavigation } from 'react-navigation';
-import { Badge } from 'native-base';
+    Text, View, StyleSheet,  ScrollView,
+    TouchableOpacity,  Image, ImageBackground
+} from 'react-native'
+import { Badge, } from 'native-base';
+import { withNavigation } from 'react-navigation'
 
 import MoIcon from 'react-native-vector-icons/Octicons';
 import MaIcon from 'react-native-vector-icons/AntDesign';
@@ -143,25 +138,17 @@ class Headcalendar extends Component {
 }
 
 class Headbutton extends Component {
-  render() {
-    return (
-      <TouchableOpacity>
-        <View
-          style={{
-            backgroundColor: '#FB4D4E',
-            height: 50,
-            marginTop: 15,
-            borderRadius: 5,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
-            Search RedRoomz
-          </Text>
-        </View>
-      </TouchableOpacity>
-    );
-  }
+    render() {
+        return (
+            <TouchableOpacity
+            onPress={()=>this.props.navigation.navigate('SearchHotels')}>
+
+                <View style={{ backgroundColor: '#FB4D4E', height: 50, marginTop: 15, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>Search RedRoomz</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
 }
 
 class City extends Component {
@@ -222,114 +209,78 @@ class Travel extends Component {
 }
 
 export default class App extends Component {
-  render() {
-    return (
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <ScrollView>
-          <ImageBackground
-            source={imagebanner}
-            imageStyle={{ opacity: 0.8 }}
-            style={{ height: 270 }}>
-            <View style={{ marginHorizontal: 15, marginTop: 15 }}>
-              <Headbar />
-              <Headsearch />
-              <Headcalendar />
-              <Headbutton />
-            </View>
-          </ImageBackground>
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: 'white',
-              marginTop: 10,
-              marginHorizontal: 15,
-            }}>
-            <View>
-              <View>
-                <Text style={{ marginVertical: 5, left: 3, fontSize: 16 }}>
-                  Recomended Properties
-                </Text>
-              </View>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <RecomendedProperties />
-                <RecomendedProperties />
-                <RecomendedProperties />
-                <RecomendedProperties />
-                <RecomendedProperties />
-                <RecomendedProperties />
-              </ScrollView>
-            </View>
-            <View>
-              <View>
-                <Text
-                  style={{
-                    marginTop: 20,
-                    marginBottom: 5,
-                    left: 3,
-                    fontSize: 16,
-                  }}>
-                  Promos and Offers
-                </Text>
-              </View>
-              <PromosOffers />
-            </View>
-            <View>
-              <View>
-                <Text
-                  style={{
-                    marginTop: 20,
-                    marginVertical: 5,
-                    left: 3,
-                    fontSize: 16,
-                  }}>
-                  Nearby Properties
-                </Text>
-              </View>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <NearbyProperties />
-              </ScrollView>
-            </View>
-            <View>
-              <Text
-                style={{
-                  marginTop: 20,
-                  marginBottom: -10,
-                  left: 3,
-                  fontSize: 16,
-                }}>
-                RedRoomz Service Guarantee
-              </Text>
-            </View>
-            <Servicebar />
-            <View style={{ marginTop: 10 }}>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <City />
-                <City />
-                <City />
-                <City />
-                <City />
-                <City />
-                <City />
-              </ScrollView>
-            </View>
-            <View style={{}}>
-              <Text style={{ marginTop: 30, left: 3, fontSize: 16 }}>
-                Travel Stories
-              </Text>
-            </View>
-            <View>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <Travel />
-                <Travel />
-                <Travel />
-                <Travel />
-              </ScrollView>
-            </View>
-          </View>
-        </ScrollView>
-      </View>
-    );
-  }
+    render() {
+        return (
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
+                <ScrollView>
+                    <ImageBackground source={imagebanner} imageStyle=
+                        {{ opacity: 0.8 }} style={{ height: 270 }}>
+                        <View style={{ marginHorizontal: 15, marginTop: 15 }}>
+                            <Headbar />
+                            <Headsearch />
+                            <Headcalendar />
+                            <Headbutton navigation={this.props.navigation} />
+                        </View>
+                    </ImageBackground>
+                    <View style={{ flex: 1, backgroundColor: "white", marginTop: 10, marginHorizontal: 15 }}>
+                        <View>
+                            <View><Text style={{ marginVertical: 5, left: 3, fontSize: 16 }}>Recomended Properties</Text>
+                            </View>
+                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                                <RecomendedProperties navigation={this.props.navigation} />
+                                <RecomendedProperties />
+                                <RecomendedProperties />
+                                <RecomendedProperties />
+                                <RecomendedProperties />
+                                <RecomendedProperties />
+                            </ScrollView>
+                        </View>
+                        <View>
+                            <View><Text style={{ marginTop: 20, marginBottom: 5, left: 3, fontSize: 16 }}>Promos and Offers</Text>
+                            </View>
+                            <PromosOffers />
+
+                        </View>
+                        <View>
+                            <View><Text style={{ marginTop: 20, marginVertical: 5, left: 3, fontSize: 16 }}>Nearby Properties</Text>
+                            </View>
+                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                                <NearbyProperties />
+                            </ScrollView>
+                        </View>
+                        <View>
+                            <Text style={{ marginTop: 20, marginBottom: -10, left: 3, fontSize: 16 }}>RedRoomz Service Guarantee</Text>
+                        </View>
+                        <Servicebar />
+                        <View style={{ marginTop: 10 }}>
+                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                                <City />
+                                <City />
+                                <City />
+                                <City />
+                                <City />
+                                <City />
+                                <City />
+                            </ScrollView>
+                        </View>
+                        <View style={{}}>
+                            <Text style={{ marginTop: 30, left: 3, fontSize: 16 }}>
+                                Travel Stories
+                            </Text>
+                        </View>
+                        <View>
+                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                                <Travel />
+                                <Travel />
+                                <Travel />
+                                <Travel />
+                            </ScrollView>
+                        </View>
+                    </View>
+                </ScrollView>
+            </View >
+        )
+    }
 }
 
 const styles = StyleSheet.create({

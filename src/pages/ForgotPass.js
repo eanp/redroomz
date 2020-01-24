@@ -14,6 +14,9 @@ const style = StyleSheet.create({
     padding: 16,
     justifyContent: 'center'
   },
+  inputText:{
+    marginBottom: 16,  paddingBottom:8, borderColor:'red'
+ }
 });
 
 function ForgotPass(props) {
@@ -67,11 +70,10 @@ function ForgotPass(props) {
 
 
 
-        <Form style={{ marginBottom: 'auto', marginTop: 48, paddingRight: 16 }} >
-          <Item stackedLabel style={{ marginBottom: 16, borderRadius: 4 }} >
+        <Form style={{ marginBottom: 'auto', marginTop: 48,  }} >
+          <Item floatingLabel style={style.inputText} >
             <Label style={{ color: 'red' }} >Email Address</Label>
             <Input
-              style={{ paddingLeft: 8, borderBottomColor: 'red', borderBottomWidth: 0.5 }}
               value={input.email}
               selectionColor={'#c00'}
               keyboardType='email-address'
