@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import {  StyleSheet, Image } from 'react-native';
-import {  Container, Header, Title, Body, Item, Form, Label, Input, Text, DatePicker, Content, Icon, H1, Toast, Row, Right, Thumbnail, Left } from 'native-base';
+import { StyleSheet, Image,TouchableOpacity } from 'react-native';
+import { Container, Header, Title, Body, Item, Form, Label, Input, Text, DatePicker, Content, Icon, H1, Toast, Row, Right, Thumbnail, Left } from 'native-base';
 import { connect } from 'react-redux';
+import ImagePicker from 'react-native-image-picker';
 
 const style = StyleSheet.create({
   root: {
@@ -10,9 +11,11 @@ const style = StyleSheet.create({
     padding: 16,
     justifyContent: 'center'
   },
+  picture: { width: 80, height: 80, alignSelf: 'center' },
 });
 
 function EditProfile(props) {
+
   const [input, setInput] = useState({})
 
   const postLogin = async () => {
@@ -32,6 +35,44 @@ function EditProfile(props) {
       duration: 2000
     })
   }
+
+  function selectPhotoTapped() {
+    const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true,
+      },
+    };
+
+    ImagePicker.showImagePicker(options, response => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        // console.log('User cancelled photo picker');
+        alert('User cancelled photo picker');
+      } else if (response.error) {
+        // console.log('ImagePicker Error: ', response.error);
+        alert('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        // console.log('User tapped custom button: ', response.customButton);
+        alert('User tapped custom button: ', response.customButton);
+      } else {
+        let source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        setInput({
+          ...input,
+          avatarSource: source,
+        });
+      }
+    });
+  }
+
+
   return (
     <Container >
       {/* <Content padder contentContainerStyle={{ flexGrow: 1, backgroundColor:'fff', opacity:1 }}> */}
@@ -49,6 +90,14 @@ function EditProfile(props) {
       </Header>
 
       <Content padder>
+        <TouchableOpacity onPress={selectPhotoTapped.bind(this)}>
+          <Image
+            source={input.avatarSource}
+            borderRadius={40}
+            style={style.picture}
+          />
+        </TouchableOpacity>
+
         <Form style={{ marginBottom: 'auto', marginTop: 16, paddingRight: 16, justifyContent: 'flex-start' }} >
           <Text style={{ marginLeft: 12 }}>Full Name</Text>
           <Row >
