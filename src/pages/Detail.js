@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -31,7 +31,7 @@ import {
   Item,
   Picker,
 } from 'native-base';
-import {withNavigation} from 'react-navigation';
+import { withNavigation } from 'react-navigation';
 import PickerBox from 'react-native-picker-box';
 
 import MoIcon from 'react-native-vector-icons/Octicons';
@@ -84,10 +84,10 @@ class Checker extends Component {
     });
   }
   setDateIn(newDate) {
-    this.setState({chosenDateIn: newDate});
+    this.setState({ chosenDateIn: newDate });
   }
   setDate(newDate) {
-    this.setState({chosenDate: newDate});
+    this.setState({ chosenDate: newDate });
   }
   render() {
     return (
@@ -106,7 +106,7 @@ class Checker extends Component {
             left: 15,
             top: 5,
           }}>
-          <Text style={{color: 'grey'}}>Check-In</Text>
+          <Text style={{ color: 'grey' }}>Check-In</Text>
           <DatePicker
             minimumDate={new Date(2019, 1, 1)}
             maximumDate={new Date(2021, 12, 31)}
@@ -116,17 +116,17 @@ class Checker extends Component {
             animationType={'fade'}
             androidMode={'default'}
             placeHolderText="Select Date"
-            placeHolderTextStyle={{color: 'grey', fontSize: 10, top: -10}}
-            textStyle={{color: 'grey', fontSize: 10, top: -10}}
+            placeHolderTextStyle={{ color: 'grey', fontSize: 10, top: -10 }}
+            textStyle={{ color: 'grey', fontSize: 10, top: -10 }}
             onDateChange={this.setDateIn}
             disabled={false}
           />
-          <Text style={{fontSize: 12, fontWeight: 'bold', top: -15}}>
+          <Text style={{ fontSize: 12, fontWeight: 'bold', top: -15 }}>
             {this.state.chosenDateIn.toString().substr(4, 12)}
           </Text>
         </View>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <MaIcon name="arrowright" style={{fontSize: 20, color: 'grey'}} />
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <MaIcon name="arrowright" style={{ fontSize: 20, color: 'grey' }} />
         </View>
         <View
           style={{
@@ -136,7 +136,7 @@ class Checker extends Component {
             left: -15,
             top: 5,
           }}>
-          <Text style={{color: 'grey'}}>Check-Out</Text>
+          <Text style={{ color: 'grey' }}>Check-Out</Text>
           <DatePicker
             minimumDate={new Date(2019, 1, 1)}
             maximumDate={new Date(2021, 12, 31)}
@@ -146,12 +146,12 @@ class Checker extends Component {
             animationType={'fade'}
             androidMode={'default'}
             placeHolderText="Select Date"
-            placeHolderTextStyle={{color: 'grey', fontSize: 10, top: -10}}
-            textStyle={{color: 'grey', fontSize: 10, top: -10}}
+            placeHolderTextStyle={{ color: 'grey', fontSize: 10, top: -10 }}
+            textStyle={{ color: 'grey', fontSize: 10, top: -10 }}
             onDateChange={this.setDate}
             disabled={false}
           />
-          <Text style={{fontSize: 12, fontWeight: 'bold', top: -15}}>
+          <Text style={{ fontSize: 12, fontWeight: 'bold', top: -15 }}>
             {this.state.chosenDate.toString().substr(4, 12)}
           </Text>
         </View>
@@ -163,14 +163,14 @@ class Checker extends Component {
             alignItems: 'center',
             borderColor: 'grey',
           }}>
-          <Text style={{color: 'grey', top: 5}}>Room(s)</Text>
-          <Item picker style={{elevation:0,width:70}}>
+          <Text style={{ color: 'grey', top: 5 }}>Room(s)</Text>
+          <Item picker style={{ elevation: 0, width: 70 }}>
             <Picker
               mode="dropdown"
               iosIcon={<Icon name="arrow-down" style={{}} />}
-              style={{left:5}}
+              style={{ left: 5 }}
               placeholder="1"
-              placeholderStyle={{color: '#bfc6ea'}}
+              placeholderStyle={{ color: '#bfc6ea' }}
               placeholderIconColor="#007aff"
               selectedValue={this.state.selected2}
               onValueChange={this.onValueChange2.bind(this)}>
@@ -190,16 +190,16 @@ class Checker extends Component {
 class Location extends Component {
   render() {
     return (
-      <View style={{flexDirection: 'row', height: 100}}>
+      <View style={{ flexDirection: 'row', height: 100 }}>
         <View>
-          <Image source={maps} style={{height: 90, width: 90}} />
+          <Image source={maps} style={{ height: 90, width: 90 }} />
         </View>
-        <View style={{marginLeft: 10, flex: 1, color: '#ddd'}}>
-          <Text style={{color: 'grey'}}>
+        <View style={{ marginLeft: 10, flex: 1, color: '#ddd' }}>
+          <Text style={{ color: 'grey' }}>
             Siloam Hospital Kebon jerouk, jalan masjid rtrw banyak banget
           </Text>
-          <Text style={{color: 'grey', fontSize: 14, marginTop: 10}}>
-            <MeIcon name="location-pin" style={{color: 'red', fontSize: 14}} />{' '}
+          <Text style={{ color: 'grey', fontSize: 14, marginTop: 10 }}>
+            <MeIcon name="location-pin" style={{ color: 'red', fontSize: 14 }} />{' '}
             | 2.3 km from Monas Jakarta
           </Text>
         </View>
@@ -211,7 +211,7 @@ class Location extends Component {
 class Lines extends Component {
   render() {
     return (
-      <View style={{backgroundColor: '#ddd', height: 1, marginVertical: 10}} />
+      <View style={{ backgroundColor: '#ddd', height: 1, marginVertical: 10 }} />
     );
   }
 }
@@ -219,10 +219,10 @@ class Lines extends Component {
 class Headbar extends Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <View style={{flexDirection: 'row'}}>
-          <View style={{flex: 1, flexDirection: 'row', marginTop: 5}}>
-            <View style={(styles.icontag, {marginLeft: 10})}>
+      <View style={{ flex: 1 }}>
+        <View style={{ flexDirection: 'row' }}>
+          <View style={{ flex: 1, flexDirection: 'row', marginTop: 5 }}>
+            <View style={(styles.icontag, { marginLeft: 10 })}>
               <TouchableOpacity>
                 <MzIcon style={styles.headicon} name="md-arrow-back" />
               </TouchableOpacity>
@@ -237,11 +237,11 @@ class Headbar extends Component {
 class DetailTitle extends Component {
   render() {
     return (
-      <View style={{marginTop: 15}}>
-        <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+      <View style={{ marginTop: 15 }}>
+        <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
           RedRoomz near Ekalosari Mall Bogor
         </Text>
-        <View style={{flexDirection: 'row', marginVertical: 10}}>
+        <View style={{ flexDirection: 'row', marginVertical: 10 }}>
           <View
             style={{
               height: 20,
@@ -252,7 +252,7 @@ class DetailTitle extends Component {
               alignItems: 'center',
               marginRight: 10,
             }}>
-            <Text style={{color: 'white', fontSize: 12}}>4.8/5</Text>
+            <Text style={{ color: 'white', fontSize: 12 }}>4.8/5</Text>
           </View>
           <Text
             style={{
@@ -263,7 +263,7 @@ class DetailTitle extends Component {
             }}>
             Excellent
           </Text>
-          <Text style={{color: 'red', fontSize: 14}}>See All reviews</Text>
+          <Text style={{ color: 'red', fontSize: 14 }}>See All reviews</Text>
         </View>
       </View>
     );
@@ -273,17 +273,17 @@ class DetailTitle extends Component {
 export default class App extends Component {
   render() {
     return (
-      <View style={{flex: 1, backgroundColor: 'white'}}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
         <ScrollView>
           <ImageBackground
             source={Imageroom}
-            imageStyle={{opacity: 0.8}}
-            style={{height: 200}}>
-            <View style={{marginHorizontal: 15, marginTop: 15}}>
+            imageStyle={{ opacity: 0.8 }}
+            style={{ height: 200 }}>
+            <View style={{ marginHorizontal: 15, marginTop: 15 }}>
               <Headbar />
             </View>
           </ImageBackground>
-          <View style={{marginHorizontal: 13}}>
+          <View style={{ marginHorizontal: 13 }}>
             <DetailTitle />
             <Lines />
             <View>
@@ -337,16 +337,16 @@ export default class App extends Component {
           </View>
         </ScrollView>
 
-        <Footer style={{backgroundColor: '#fff'}}>
-          <View style={{flexDirection: 'row'}}>
-            <View style={{right: 60, justifyContent: 'center'}}>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Rp.20.000 </Text>
-              <Text style={{color: 'grey', fontSize: 10}}>
+        <Footer style={{ backgroundColor: '#fff' }}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ right: 60, justifyContent: 'center' }}>
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}>Rp.20.000 </Text>
+              <Text style={{ color: 'grey', fontSize: 10 }}>
                 for 1 Night (tax included)
               </Text>
             </View>
-            <View style={{left: 60, justifyContent: 'center'}}>
-              <TouchableOpacity>
+            <View style={{ left: 60, justifyContent: 'center' }}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Inputbooking')}>
                 <View
                   style={{
                     height: 32,
@@ -357,7 +357,7 @@ export default class App extends Component {
                     alignItems: 'center',
                   }}>
                   <Text
-                    style={{fontSize: 14, fontWeight: 'bold', color: 'white'}}>
+                    style={{ fontSize: 14, fontWeight: 'bold', color: 'white' }}>
                     Book Now
                   </Text>
                 </View>
