@@ -6,11 +6,7 @@ import { Text } from 'native-base'
 
 import {
     Login, Register, ForgotPass, Splash, Profile,
-<<<<<<< HEAD
     ChangePassword, EditProfile,SearchHotels, RedCash, Payment
-=======
-    ChangePassword, EditProfile, SearchHotels, RedCash
->>>>>>> ean
 } from '../pages/'
 
 import MeIcon from 'react-native-vector-icons/Entypo'
@@ -207,13 +203,9 @@ const AppStack = createStackNavigator(
         SearchHotels: { screen: SearchHotels },
         EditProfile: { screen: EditProfile },
         RedCash: { screen: RedCash },
-<<<<<<< HEAD
         DetailHotel:{screen:Detail},
-        Payment:{screen:Payment}
-=======
-        DetailHotel: { screen: Detail },
+        Payment:{screen:Payment},
         Inputbooking: { screen: Inputbooking }
->>>>>>> ean
     }, {
     headerMode: 'none'
     , initialRouteName: 'BottomNav'
