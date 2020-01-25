@@ -19,6 +19,78 @@ import MzIcon from 'react-native-vector-icons/Ionicons'
 
 import o1 from '../assets/o1.png'
 import o2 from '../assets/o2.png'
+import Imageroom from '../assets/hotel1.jpg';
+
+
+function ListBooking(props) {
+  return (
+    <View style={{marginTop: 20, elevation: 5}}>
+      <View
+        style={{
+          flexWrap: 'wrap',
+          borderWidth: 1,
+          borderColor: '#ddd',
+          borderRadius: 5,
+        }}>
+        <Image
+          style={{
+            height: 200,
+            width: '100%',
+          }}
+          source={Imageroom}
+        />
+        <View style={{marginLeft: 5, marginTop: 10}}>
+          <Text style={{fontSize: 16, fontWeight: 'bold'}}>
+            RedRoomz Sukasari near Mall Ekalosari
+          </Text>
+          <Text style={{fontSize: 14, color: 'grey'}}>
+            Bogor | 30 Januari 2020 - 31 Januari 2020
+          </Text>
+          <Text style={{fontSize: 14, color: 'grey'}}>1 Room 1 Night(s)</Text>
+          <Text style={{color: 'green', marginTop: 5}}>
+            <MoIcon name="primitive-dot" style={{fontSize: 20}} /> Confirmed
+          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: 40,
+              marginTop: 10,
+            }}>
+            <View
+              style={{
+                height: 40,
+                width: 130,
+                right: 20,
+                backgroundColor: '#ddd',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 5,
+              }}>
+              <Text style={{color: 'white', fontSize: 16}}>
+                Online Check-in
+              </Text>
+            </View>
+            <View
+              style={{
+                height: 40,
+                width: 130,
+                borderWidth: 2,
+                borderColor: 'red',
+                borderRadius: 5,
+                left: 20,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: 'red', fontSize: 16}}>Pay Now</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  );
+}
 
 
 function Travel(props) {
@@ -60,7 +132,9 @@ function Bookings(props) {
             </View>
             <View style={{ marginHorizontal: 15 }}>
                 <ScrollView>
-                    <CenterBooking />
+                    <ListBooking />
+                    <ListBooking />
+                    <ListBooking />
                 </ScrollView>
             </View>
         </View >

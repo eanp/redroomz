@@ -6,7 +6,7 @@ import { Text } from 'native-base'
 
 import {
     Login, Register, ForgotPass, Splash, Profile,
-    ChangePassword, EditProfile,SearchHotels, RedCash
+    ChangePassword, EditProfile, SearchHotels, RedCash
 } from '../pages/'
 
 import MeIcon from 'react-native-vector-icons/Entypo'
@@ -18,7 +18,9 @@ import Search from '../pages/Search';
 import CoLiving from '../pages/CoLiving';
 import Offers from '../pages/Offers';
 import Offersdetail from '../pages/Offersdetail';
+import Offersdetail2 from '../pages/Offersdetail2';
 import Bookings from '../pages/Bookings';
+import Inputbooking from '../pages/Inputbooking';
 import Detail from '../pages/Detail';
 
 
@@ -65,6 +67,14 @@ const OffersNav = createStackNavigator({
     },
     Offersdetail: {
         screen: Offersdetail,
+        navigationOptions: {
+            headerShown: true,
+            headerTitle: 'Terms & conditions',
+            headerTitleAlign: 'center'
+        }
+    },
+    Offersdetail2: {
+        screen: Offersdetail2,
         navigationOptions: {
             headerShown: true,
             headerTitle: 'Terms & conditions',
@@ -193,7 +203,8 @@ const AppStack = createStackNavigator(
         SearchHotels: { screen: SearchHotels },
         EditProfile: { screen: EditProfile },
         RedCash: { screen: RedCash },
-        DetailHotel:{screen:Detail}
+        DetailHotel: { screen: Detail },
+        Inputbooking: { screen: Inputbooking }
     }, {
     headerMode: 'none'
     , initialRouteName: 'BottomNav'
