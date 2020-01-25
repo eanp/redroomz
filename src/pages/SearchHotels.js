@@ -48,7 +48,7 @@ function SearchHotels(props) {
          </View>
          <Content>
             <List>
-               <HotelCard />
+               <HotelCard onPress={()=>props.navigation.navigate('DetailHotel')} />
                <HotelCard />
                <HotelCard />
                <HotelCard />
@@ -72,80 +72,81 @@ function SearchHotels(props) {
          <Modal
             visible={modalVisible}
             style={{ backgroundColor: '#fff', padding: 32 }}
-            onRequestClose={() => setModalVisible(false)}
-         // onBackButtonPress={()=>setModalVisible(false)}
-         // animationIn='slideInLeft'
-         // animationOut='slideInLeft'
-         >
-            <Form style={{ padding: 16, flex: 1, marginTop: 60 }}>
-
-               <Label>Price</Label>
-            <Slider
-                  style={{ height: 30 }}
-                  minimumValue={100000}
-                  maximumValue={400000}
-                  step={50000}
-                  thumbTintColor='#f00'
-                  minimumTrackTintColor="#F00"
-                  maximumTrackTintColor="#000000"
-               />
-               <Text>Harga IDR </Text>
-
-               <Label style={{marginTop:16}}>Sort By</Label>
-               <Picker
-                  style={{ borderWidth: 1, borderColor: '#111' }}
-                  // selectedValue={this.state.language}
-                  onValueChange={(itemValue, itemIndex) =>
-                     console.log({ sort: itemValue })
-                  }>
-                  <Picker.Item label="All" value={null} />
-                  <Picker.Item label="Name" value="name" />
-                  <Picker.Item label="Lokasi" value="location" />
-                  <Picker.Item label="Lokasi" value="location" />
-               </Picker>
-
-               <Text style={{marginTop:16}}>Property Type</Text>
-               <Row style={{ height: 'auto', marginVertical: 12 }}>
-                  <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
-                     <Button  danger transparent active><Text>All</Text></Button>
-                  </View>
-                  <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1 }}>
-                     <Button  danger transparent active><Text>All</Text></Button>
-                  </View>
-                  <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
-                     <Button  danger transparent active><Text>All</Text></Button>
-                  </View>
-               </Row>
-
-
-               <Text style={{marginTop:16}}>Payment Method</Text>
-               <Row style={{ height: 'auto', marginVertical: 12 }}>
-                  <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
-                     <Button  danger transparent active><Text>Pay At Hotel</Text></Button>
-                  </View>
-                  <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
-                     <Button  danger transparent active><Text>Red Cash</Text></Button>
-                  </View>
-               </Row>
-
-               
-
-               <Row style={{}}>
-                  <Button bordered danger onPress={() => setModalVisible(false)}
-                     style={{ flex: 1, marginHorizontal: 8 }}>
-                     <Text>Cancel</Text>
-                  </Button>
-                  <Button danger onPress={() => setModalVisible(false)}
-                     style={{ flex: 1, marginHorizontal: 8 }}>
-                     <Text>Save</Text>
-                  </Button>
-               </Row>
-            </Form>
+            onRequestClose={() => setModalVisible(false)}>
+               <FormModal setModalVisible={setModalVisible} />
          </Modal>
 
       </Container>
    );
 };
+
+function FormModal({setModalVisible, ...props }) {
+   return (
+      <Form style={{ padding: 16, flex: 1, marginTop: 60 }}>
+
+         <Label>Price</Label>
+         <Slider
+            style={{ height: 30 }}
+            minimumValue={100000}
+            maximumValue={400000}
+            step={50000}
+            thumbTintColor='#f00'
+            minimumTrackTintColor="#F00"
+            maximumTrackTintColor="#000000"
+         />
+         <Text>Harga IDR </Text>
+
+         <Label style={{ marginTop: 16 }}>Sort By</Label>
+         <Picker
+            style={{ borderWidth: 1, borderColor: '#111' }}
+            // selectedValue={this.state.language}
+            onValueChange={(itemValue, itemIndex) =>
+               console.log({ sort: itemValue })
+            }>
+            <Picker.Item label="All" value={null} />
+            <Picker.Item label="Name" value="name" />
+            <Picker.Item label="Lokasi" value="location" />
+            <Picker.Item label="Lokasi" value="location" />
+         </Picker>
+
+         <Text style={{ marginTop: 16 }}>Property Type</Text>
+         <Row style={{ height: 'auto', marginVertical: 12 }}>
+            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
+               <Button danger transparent active><Text>All</Text></Button>
+            </View>
+            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1 }}>
+               <Button danger transparent active><Text>All</Text></Button>
+            </View>
+            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
+               <Button danger transparent active><Text>All</Text></Button>
+            </View>
+         </Row>
+
+
+         <Text style={{ marginTop: 16 }}>Payment Method</Text>
+         <Row style={{ height: 'auto', marginVertical: 12 }}>
+            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
+               <Button danger transparent active><Text>Pay At Hotel</Text></Button>
+            </View>
+            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
+               <Button danger transparent active><Text>Red Cash</Text></Button>
+            </View>
+         </Row>
+
+         <Row style={{}}>
+            <Button bordered danger onPress={() => setModalVisible(false)}
+               style={{ flex: 1, marginHorizontal: 8 }}>
+               <Text>Cancel</Text>
+            </Button>
+            <Button danger onPress={() => setModalVisible(false)}
+               style={{ flex: 1, marginHorizontal: 8 }}>
+               <Text>Save</Text>
+            </Button>
+         </Row>
+      </Form>
+
+   )
+}
 
 // const mapStateToProps = state => {
 //    return {
@@ -154,4 +155,4 @@ function SearchHotels(props) {
 // }
 
 //  export default connect(mapStateToProps)(SearchHotels)
-export default SearchHotels
+export default SearchHotels;

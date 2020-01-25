@@ -36,7 +36,7 @@ class Headbar extends Component {
             <MoIcon style={styles.headicon} name="gift" />
           </View>
           <View style={styles.icontag}>
-            <MaIcon style={styles.headicon} name="wallet" />
+            <MaIcon style={styles.headicon} name="wallet" onPress={()=>this.props.navigation.navigate('RedCash')} />
             <Badge
               style={{
                 height: 12,
@@ -216,7 +216,7 @@ export default class App extends Component {
                     <ImageBackground source={imagebanner} imageStyle=
                         {{ opacity: 0.8 }} style={{ height: 270 }}>
                         <View style={{ marginHorizontal: 15, marginTop: 15 }}>
-                            <Headbar />
+                            <Headbar navigation={this.props.navigation} />
                             <Headsearch />
                             <Headcalendar />
                             <Headbutton navigation={this.props.navigation} />

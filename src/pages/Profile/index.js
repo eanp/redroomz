@@ -52,7 +52,7 @@ export default function Profile(props) {
                <ListItemSetting title='Currency'
                   right={<Text style={{ fontWeight: 'bold' }}>Indonesian Rupiah</Text>} />
                <ListItemSetting title='Refer And Earn' />
-               <ListItemSetting title='Change Password' />
+               <ListItemSetting title='Change Password' onPress={()=>props.navigation.navigate('ChangePassword')} />
                <ListItemSetting title='Contact Us' />
                <ListItemSetting title='Logout' />               
             </List>

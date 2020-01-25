@@ -3,10 +3,10 @@ import { Container, ListItem, Left, Body, Text, Thumbnail, Right } from 'native-
 import { TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/Entypo'
 
-export default function HotelCard() {
+export default function HotelCard(props) {
    return (
       <Fragment>
-         <ListItem button thumbnail style={{marginTop:16}}>
+         <ListItem button thumbnail style={{marginTop:16}} onPress={props.onPress} >
                <Left style={{ flex: 2, marginRight:10 }}>
                   <Thumbnail square source={require('../assets/hotel1.jpg')} style={{height:128, width:128}} />
          </Left>

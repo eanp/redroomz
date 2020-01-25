@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import {  StyleSheet, Image ,View} from 'react-native';
-import {  Container, Header, Title, Body,  Text,  Content, Icon,  Row, Right, Thumbnail, Left, ListItem, List } from 'native-base';
+import {  Container, Header, Title, Body,  Text,  Content, Icon,  Row, Right, Thumbnail, Left, ListItem, List, Button } from 'native-base';
 import { connect } from 'react-redux';
 
 const style = StyleSheet.create({
@@ -28,15 +28,17 @@ function RedCash(props) {
       </Header>
       <Content>
         <ListItem noBorder>
-          <Left>
+          <Left style={{ flex: 3 }}>
             <Body>
 
             <Text>My Red Cash</Text>
             <Text style={{fontSize:24 ,fontWeight:'bold'}} >150000</Text>
             </Body>
           </Left>
-          <Right>
-            <Text style={{color:'#f00', textDecorationLine:'underline'}}>Top Up</Text>
+          <Right style={{ flex: 2 }}  >
+            <Button danger transparent onPress={()=>props.navigation.navigate('Payment')} >
+            <Text style={{ textDecorationLine:'underline'}}>Top Up</Text>
+            </Button>
           </Right>
         </ListItem>
          <View style={{height:8,backgroundColor:'#f00',}} />

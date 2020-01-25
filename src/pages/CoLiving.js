@@ -190,7 +190,7 @@ class Headbar extends Component {
             borderWidth: 1,
             borderColor: '#ddd9',
           }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('SearchHotels')}>
             <View style={{flexDirection: 'row', marginTop: 10}}>
               <Text style={{fontSize: 15, marginTop: 3, color: '#ddd9'}}>
                 <MmIcon name="search1" style={{fontSize: 15}} />
@@ -214,12 +214,11 @@ export default class App extends Component {
             imageStyle={{opacity: 0.8}}
             style={{height: 200}}>
             <View style={{marginHorizontal: 15, marginTop: 15}}>
-              <Headbar />
+              <Headbar navigation={this.props.navigation} />
             </View>
           </ImageBackground>
           <View style={{flex: 1, marginTop: 10, marginHorizontal: 15}}>
             <View>
-              <View>
                 <Text
                   style={{
                     marginTop: 30,
@@ -229,19 +228,15 @@ export default class App extends Component {
                   }}>
                   What do We Offers
                 </Text>
-              </View>
               <Offer />
             </View>
             <View>
-              <View>
                 <Text style={{marginTop: 30, left: 3, fontSize: 16}}>
                   Things to Enjoy
                 </Text>
                 <Enjoy />
-              </View>
             </View>
             <View>
-              <View>
                 <Text
                   style={{
                     marginTop: -20,
@@ -251,13 +246,9 @@ export default class App extends Component {
                   }}>
                   Amnesties
                 </Text>
-              </View>
-              <View style={{justifyContent: 'center', alignItems: 'center'}}>
                 <Image source={amnesty} style={{height: 220, width: 320}} />
-              </View>
             </View>
             <View>
-              <View>
                 <Text
                   style={{
                     marginTop: 20,
@@ -267,7 +258,6 @@ export default class App extends Component {
                   }}>
                   How to Book
                 </Text>
-              </View>
               <View
                 style={{
                   justifyContent: 'center',
