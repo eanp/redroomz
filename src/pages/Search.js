@@ -15,6 +15,17 @@ import McIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MfIcon from 'react-native-vector-icons/FontAwesome5';
 import MzIcon from 'react-native-vector-icons/Ionicons';
 
+import tf1 from '../assets/tf1.png';
+import tf2 from '../assets/tf2.png';
+import tf3 from '../assets/tf3.png';
+import tf4 from '../assets/tf4.png';
+
+import bogor from '../assets/bogor.jpg';
+import jakarta from '../assets/jakarta.jpg';
+import depok from '../assets/depok.jpg';
+import tangerang from '../assets/tangerang.jpg';
+import bekasi from '../assets/bekasi.jpg';
+
 import imagebanner from '../assets/banner.jpg';
 import whitelogo from '../assets/rrwhite.png';
 
@@ -156,6 +167,9 @@ class Headbutton extends Component {
 class City extends Component {
   render() {
     return (
+      <View style={{ marginTop: 10 }}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                     
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <TouchableOpacity style={{}}>
           <Image
@@ -166,12 +180,87 @@ class City extends Component {
               borderRadius: 40,
               marginHorizontal: 5,
             }}
-            source={imagebanner}
+            source={jakarta}
           />
         </TouchableOpacity>
         <View style={{}}>
-          <Text style={{ fontSize: 10 }}>City</Text>
+          <Text style={{ fontSize: 10 }}>Jakarta</Text>
         </View>
+      </View>
+
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableOpacity style={{}}>
+          <Image
+            style={{
+              height: 60,
+              width: 60,
+              backgroundColor: 'red',
+              borderRadius: 40,
+              marginHorizontal: 5,
+            }}
+            source={bogor}
+          />
+        </TouchableOpacity>
+        <View style={{}}>
+          <Text style={{ fontSize: 10 }}>Bogor</Text>
+        </View>
+      </View>
+
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableOpacity style={{}}>
+          <Image
+            style={{
+              height: 60,
+              width: 60,
+              backgroundColor: 'red',
+              borderRadius: 40,
+              marginHorizontal: 5,
+            }}
+            source={bekasi}
+          />
+        </TouchableOpacity>
+        <View style={{}}>
+          <Text style={{ fontSize: 10 }}>Bekasi</Text>
+        </View>
+      </View>
+
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableOpacity style={{}}>
+          <Image
+            style={{
+              height: 60,
+              width: 60,
+              backgroundColor: 'red',
+              borderRadius: 40,
+              marginHorizontal: 5,
+            }}
+            source={depok}
+          />
+        </TouchableOpacity>
+        <View style={{}}>
+          <Text style={{ fontSize: 10 }}>Depok</Text>
+        </View>
+      </View>
+
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableOpacity style={{}}>
+          <Image
+            style={{
+              height: 60,
+              width: 60,
+              backgroundColor: 'red',
+              borderRadius: 40,
+              marginHorizontal: 5,
+            }}
+            source={tangerang}
+          />
+        </TouchableOpacity>
+        <View style={{}}>
+          <Text style={{ fontSize: 10 }}>Tangerang</Text>
+        </View>
+      </View>
+
+        </ScrollView>
       </View>
     );
   }
@@ -180,6 +269,8 @@ class City extends Component {
 class Travel extends Component {
   render() {
     return (
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>                     
+      
       <View
         style={{
           justifyContent: 'center',
@@ -196,16 +287,99 @@ class Travel extends Component {
               borderRadius: 10,
               marginHorizontal: 5,
             }}
-            source={imagebanner}
-          />
+            source={tf1}
+            />
         </TouchableOpacity>
         <View style={{ left: -75 }}>
-          <Text style={{ fontSize: 16 }}>City</Text>
+          <Text style={{ fontSize: 16 }}>Nonton Perayaan Imlek di Suryakencana Bogor</Text>
           <Text style={{ fontSize: 12, color: '#ddd' }}>
-            Posted on: 21 Jan 2020
+            Posted on: 24 Jan 2020
           </Text>
         </View>
       </View>
+
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: 50,
+          marginTop: 10,
+        }}>
+        <TouchableOpacity style={{}}>
+          <Image
+            style={{
+              height: 180,
+              width: 280,
+              backgroundColor: 'red',
+              borderRadius: 10,
+              marginHorizontal: 5,
+            }}
+            source={tf2}
+            />
+        </TouchableOpacity>
+        <View style={{ left: -75 }}>
+          <Text style={{ fontSize: 16 }}>RedRoomz Indonesia now serves Coffee for Breakfast!</Text>
+          <Text style={{ fontSize: 12, color: '#ddd' }}>
+            Posted on: 23 Jan 2020
+          </Text>
+        </View>
+      </View>
+      
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: 50,
+          marginTop: 10,
+        }}>
+        <TouchableOpacity style={{}}>
+          <Image
+            style={{
+              height: 180,
+              width: 280,
+              backgroundColor: 'red',
+              borderRadius: 10,
+              marginHorizontal: 5,
+            }}
+            source={tf3}
+            />
+        </TouchableOpacity>
+        <View style={{ left: -75 }}>
+          <Text style={{ fontSize: 16 }}>Serunya Festifal Cian Cui, Tradisi Imlek di Bekasi!</Text>
+          <Text style={{ fontSize: 12, color: '#ddd' }}>
+            Posted on: 22 Jan 2020
+          </Text>
+        </View>
+      </View>
+      
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: 50,
+          marginTop: 10,
+        }}>
+        <TouchableOpacity style={{}}>
+          <Image
+            style={{
+              height: 180,
+              width: 280,
+              backgroundColor: 'red',
+              borderRadius: 10,
+              marginHorizontal: 5,
+            }}
+            source={tf4}
+            />
+        </TouchableOpacity>
+        <View style={{ left: -75 }}>
+          <Text style={{ fontSize: 16 }}>Under p400: Binondo Food Finds for the Chinese New Year!</Text>
+          <Text style={{ fontSize: 12, color: '#ddd' }}>
+            Posted on: 22 Jan 2020
+          </Text>
+        </View>
+      </View>
+      
+      </ScrollView>
     );
   }
 }
@@ -267,15 +441,9 @@ class App extends Component {
             </View>
             <Servicebar />
             <View style={{ marginTop: 10 }}>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              </ScrollView> */}
                 <City />
-                <City />
-                <City />
-                <City />
-                <City />
-                <City />
-                <City />
-              </ScrollView>
             </View>
             <View style={{}}>
               <Text style={{ marginTop: 30, left: 3, fontSize: 16 }}>
@@ -283,12 +451,9 @@ class App extends Component {
                             </Text>
             </View>
             <View>
-              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              </ScrollView> */}
                 <Travel />
-                <Travel />
-                <Travel />
-                <Travel />
-              </ScrollView>
             </View>
           </View>
         </ScrollView>

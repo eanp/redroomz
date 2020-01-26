@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import { postProfile } from '../../redux/actions/postData';
 import Axios from 'axios';
+import { getProfile } from '../../redux/actions/getData';
 
 const style = StyleSheet.create({
   root: {
@@ -68,7 +69,7 @@ function EditProfile(props) {
         setAvatar(response)
         setInput({
           ...input,
-          image: source,
+          image: response.uri,
         });
       }
     });
@@ -77,38 +78,9 @@ function EditProfile(props) {
   const postdata = async() => {
     console.log(createFormData(avatar,input))
     // props.dispatch(postProfile(props.auth.token, createFormData(avatar,input)))
-    props.dispatch(postProfile(props.auth.token, {...input, image: avatar.uri}))
-    // const res = await Axios({
-    //   method: 'put',
-    //   url: `http://192.168.0.115:3000/profile`,
-    //   data : createFormData(avatar, input),
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //     "cache-control": "no-cache",
-    //     "Postman-Token": "8bdabec9-2814-4e70-85e9-a43a9f30b174",
-    //     "processData": false,
-    //     "contentType": false,
-    //     "mimeType": "multipart/form-data",
-    //     'Authorization': 'Bearer ' + props.auth.token  
-    //   }
-  //  }
-      // headers: { }
-  //  })
-
-    // fetch("http://localhost:3000/", {
-    //   method: "POST",
-    //   body: createFormData(avatar,input)
-    // })
-    //   .then(response => response.json())
-    //   .then(response => {
-    //     console.log("upload succes", response);
-    //     alert("Upload success!");
-    //     this.setState({ photo: null });
-    //   })
-    //   .catch(error => {
-    //     console.log("upload error", error);
-    //     alert("Upload failed!");
-    //   });
+    await props.dispatch(postProfile(props.auth.token, {...input, image: avatar.uri}))
+    props.dispatch(getProfile(props.auth.token))
+    props.navigation.goBack()
   };
 
   const createFormData = (photo, body) => {
@@ -150,7 +122,7 @@ function EditProfile(props) {
       <Content padder>
         <TouchableOpacity onPress={selectPhotoTapped.bind(this)}>
           <Image
-            source={input.image}
+            source={{uri:input.image}}
             borderRadius={40}
             style={style.picture}
           />

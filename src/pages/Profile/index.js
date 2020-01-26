@@ -20,7 +20,6 @@ function Profile(props) {
    }, [])
 
    const logOut = async() => {
-      console.log('h')
       await props.dispatch(postLogout(props.auth.token))
       console.log(props.auth)
       // props.navigation.navigate('Login')

@@ -22,7 +22,7 @@ function Inputbooking(props) {
         await props.dispatch(postBooking(props.auth.token, {...data, ...input},data.id_hotel))     
         console.log(props.booking.status)
         if(props.booking.status.success){
-            // props.navigation.popToTop()
+            props.navigation.popToTop()
             // props.navigation.goBack('SearchHotels')
         } else alert('ada kesalahan di database')
     }

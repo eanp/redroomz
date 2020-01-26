@@ -53,11 +53,11 @@ function SearchHotels(props) {
          </View>
          <Content>
             <List>
-               {props.hotelList.isLoading && <ListItem>
-                  <Spinner />
-               </ListItem>}
+               {props.hotelList.isLoading && 
+               <><Spinner /></>
+                  }
 
-               {props.hotelList.data.data && props.hotelList.data.data.map((v,i)=>
+               {!(props.hotelList.isLoading) && props.hotelList.data.data && props.hotelList.data.data.map((v,i)=>
 
                <HotelCard key={i} onPress={()=>props.navigation.navigate('DetailHotel', {data:v})} data={v} />
                ) }
