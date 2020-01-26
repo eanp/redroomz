@@ -2,11 +2,11 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import { View, StyleSheet, Image, ImageBackground } from 'react-native';
 import { Button, Container, Header, Title, Body, Item, Form, Label, Input, Text, Content, Icon, H1, Toast, Left, Right, Thumbnail, Row, Spinner } from 'native-base';
-import RNRecaptcha from 'rn-recaptcha';
 
 import logo from '../assets/img/logo.png'
 import { connect } from 'react-redux';
 import ReactNativeModal from 'react-native-modal';
+import Axios from 'axios';
 
 const style = StyleSheet.create({
   root: {
@@ -23,22 +23,15 @@ function ForgotPass(props) {
   const [input, setInput] = useState({})
   const [modalVisible, setModalVisible] = useState(false)
 
-  const postLogin = async () => {
-    //  await props.dispatch(getAuth(input))
+  const postForgot = async () => {
+    const res = await Axios({
+      method: 'post',
+      url: `http://192.168.0.115:3000/forgot_password`,
+      data: input,
+   })
     setModalVisible(true)
-    console.log(props.auth)
-    if (props.auth.status.success) props.navigation.navigate('Home')
-    else if (props.auth.isError) {
-      Toast.show({
-        text: "Terdapat Error di database",
-        buttonText: "Okay",
-        duration: 2000
-      })
-    } else if (!(props.auth.status.success)) Toast.show({
-      text: props.auth.status.msg,
-      buttonText: "Okay",
-      duration: 2000
-    })
+    console.log(res.data)
+    if (res.data.success) props.navigation.goBack()
   }
 
   return (
@@ -68,8 +61,6 @@ function ForgotPass(props) {
           Enter Your Email below to reset your password
           </Text>
 
-
-
         <Form style={{ marginBottom: 'auto', marginTop: 48,  }} >
           <Item floatingLabel style={style.inputText} >
             <Label style={{ color: 'red' }} >Email Address</Label>
@@ -82,7 +73,7 @@ function ForgotPass(props) {
           </Item>
 
           <Button block rounded danger
-            onPress={postLogin}
+            onPress={postForgot}
             style={{ paddingBottom: 4, marginHorizontal: 8, backgroundColor: 'red' }}>
             <Text style={{ color: '#fff' }}> Send </Text>
           </Button>
@@ -113,5 +104,5 @@ const mapStateToProps = state => {
   }
 }
 
-// export default connect(mapStateToProps)(Register)
-export default ForgotPass
+export default connect(mapStateToProps)(ForgotPass)
+// export default ForgotPass

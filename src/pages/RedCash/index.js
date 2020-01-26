@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import {  StyleSheet, Image ,View} from 'react-native';
-import {  Container, Header, Title, Body,  Text,  Content, Icon,  Row, Right, Thumbnail, Left, ListItem, List, Button } from 'native-base';
+import { StyleSheet, Image, View } from 'react-native';
+import { Container, Header, Title, Body, Text, Content, Icon, Row, Right, Thumbnail, Left, ListItem, List, Button } from 'native-base';
 import { connect } from 'react-redux';
+import { getHistory } from '../../redux/actions/getData';
 
 const style = StyleSheet.create({
   root: {
@@ -13,6 +14,11 @@ const style = StyleSheet.create({
 });
 
 function RedCash(props) {
+
+  useEffect(() => {
+    props.dispatch(getHistory(props.auth.token))
+  }, [props.navigation])
+
   return (
     <Container >
       {/* <Content padder contentContainerStyle={{ flexGrow: 1, backgroundColor:'fff', opacity:1 }}> */}
@@ -30,43 +36,54 @@ function RedCash(props) {
         <ListItem noBorder>
           <Left style={{ flex: 3 }}>
             <Body>
-
-            <Text>My Red Cash</Text>
-            <Text style={{fontSize:24 ,fontWeight:'bold'}} >150000</Text>
+              <Text>My Red Cash</Text>
+              <Text style={{ fontSize: 24, fontWeight: 'bold' }} >{props.profile.data.saldo}</Text>
             </Body>
           </Left>
           <Right style={{ flex: 2 }}  >
-            <Button danger transparent onPress={()=>props.navigation.navigate('Payment')} >
-            <Text style={{ textDecorationLine:'underline'}}>Top Up</Text>
+            <Button danger transparent onPress={() => props.navigation.navigate('Payment')} >
+              <Text style={{ textDecorationLine: 'underline' }}>Top Up</Text>
             </Button>
           </Right>
         </ListItem>
-         <View style={{height:8,backgroundColor:'#f00',}} />
-         <ListItem itemDivider>
+        <View style={{ height: 8, backgroundColor: '#f00', }} />
+        <ListItem itemDivider>
           <Left>
             <Text note>All Transaction</Text>
           </Left>
           <Icon name='list' />
-         </ListItem>
-         <ListItem >
-          <Body style={{flex:3}}>
-            <Text style={{fontWeight:'bold'}}>Booking Hotel</Text>
+        </ListItem>
+        {props.history.data && props.history.data.map((v, i) =>
+          <ListItem key={i} >
+            <Body style={{ flex: 3 }}>
+              <Text style={{ fontWeight: 'bold' }}>{v.description}</Text>
+              <Text>{(v.name ) || ''}</Text>
+              <Text note >Used On : {v.created_on.split('T')[0]}</Text>
+            </Body>
+            <Right style={{ flex: 1 }}>
+              <Text style={{ color: v.saldo?'#0f0' :'#f00', fontSize: 12 }}>{v.saldo? '+': '-'} {v.total || v.saldo}</Text>
+              <Text style={{ color: v.saldo?'#0f0' :'#f00', fontSize: 12 }}>{v.saldo? 'Top Up':'Used'}</Text>
+            </Right>
+          </ListItem>)}
+        <ListItem >
+          <Body style={{ flex: 3 }}>
+            <Text style={{ fontWeight: 'bold' }}>Booking Hotel</Text>
             <Text>At hostel near mall 123</Text>
             <Text note >Used On : 24 Jan 2019</Text>
           </Body>
-          <Right style={{flex:1}}>
-            <Text style={{color:'#f00', fontSize:12}}>+150000</Text>
-            <Text style={{color:'#f00', fontSize:12}}>Used</Text>
+          <Right style={{ flex: 1 }}>
+            <Text style={{ color: '#f00', fontSize: 12 }}>+150000</Text>
+            <Text style={{ color: '#f00', fontSize: 12 }}>Used</Text>
           </Right>
         </ListItem>
-         <ListItem >
-          <Body style={{flex:3}}>
-            <Text style={{fontWeight:'bold'}}>Reward</Text>
+        <ListItem >
+          <Body style={{ flex: 3 }}>
+            <Text style={{ fontWeight: 'bold' }}>Reward</Text>
             <Text note >Used On : 24 Jan 2019</Text>
           </Body>
-          <Right style={{flex:1}}>
-            <Text style={{color:'#0f0', fontSize:12}}>+150000</Text>
-            <Text style={{color:'#0f0', fontSize:12}}>Reward</Text>
+          <Right style={{ flex: 1 }}>
+            <Text style={{ color: '#0f0', fontSize: 12 }}>+150000</Text>
+            <Text style={{ color: '#0f0', fontSize: 12 }}>Reward</Text>
           </Right>
         </ListItem>
       </Content>
@@ -77,9 +94,11 @@ function RedCash(props) {
 const mapStateToProps = state => {
 
   return {
-    auth: state.auth
+    auth: state.auth,
+    profile:state.profile,
+    history: state.history
   }
 }
 
-export default RedCash;
-// export default connect(mapStateToProps)(Login)
+// export default RedCash;
+export default connect(mapStateToProps)(RedCash)

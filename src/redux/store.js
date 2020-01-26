@@ -7,7 +7,7 @@ import {persistStore, persistReducer} from 'redux-persist';
 import {AsyncStorage} from 'react-native';
 import promiseMiddleware from 'redux-promise-middleware';
 
-import reducer from './reducer';
+import reducer from './reducers';
 
 const persistConfig = {
   key: 'root',
@@ -23,6 +23,8 @@ const store = createStore(
   applyMiddleware(logger, promiseMiddleware),
 );
 const persistor = persistStore(store);
+export {store, persistor};
+
 
 
 // export {store, persistor};

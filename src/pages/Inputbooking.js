@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import {
     Text, View, StyleSheet, StatusBar, ScrollView,
     TouchableOpacity, TextInput, Image, ImageBackground
@@ -7,19 +7,25 @@ import {
     Container, Header, Content, Card, CardItem, Icon, Form, Item, Input, Label,
     ScrollableTab, Right, Tab, Tabs, TabHeading, Badge, Left, Body, Title, Footer
 } from 'native-base';
-import { withNavigation } from 'react-navigation'
-
-import MoIcon from 'react-native-vector-icons/Octicons'
-import MaIcon from 'react-native-vector-icons/AntDesign'
-import MeIcon from 'react-native-vector-icons/Entypo'
-import MmIcon from 'react-native-vector-icons/AntDesign'
-import McIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import MfIcon from 'react-native-vector-icons/FontAwesome5'
-import MzIcon from 'react-native-vector-icons/Ionicons'
 
 import Imageroom from '../assets/hotel1.jpg';
+import { connect } from 'react-redux';
+import { postBooking } from '../redux/actions/postData';
 
 function Inputbooking(props) {
+
+    const [input, setInput] = useState(props.profile.data)
+    const data = props.navigation.state.params.data;
+    console.log({...data, ...input})
+    
+    const postBook = async() => {
+        await props.dispatch(postBooking(props.auth.token, {...data, ...input},data.id_hotel))     
+        console.log(props.booking.status)
+        if(props.booking.status.success){
+            // props.navigation.popToTop()
+            // props.navigation.goBack('SearchHotels')
+        } else alert('ada kesalahan di database')
+    }
     return (
         <View style={{ backgroundColor: 'white', flex: 1 }}>
             <Container>
@@ -48,7 +54,7 @@ function Inputbooking(props) {
                             }}>
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={{ flex: 2 }}>
-                                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>RedRoomz Hostel near Ekalosari Mall</Text>
+                                    <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{data.name}</Text>
                                     <Text style={{ color: 'grey' }}>
                                         Siloam Hospital Kebon jerouk, jalan masjid rtrw banyak banget
                         </Text>
@@ -58,7 +64,7 @@ function Inputbooking(props) {
                                 </View >
                             </View>
                             <View style={{ marginVertical: 20 }}>
-                                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>RedRoomz Bogor</Text>
+                                <Text style={{ fontSize: 16, fontWeight: 'bold' }}>RedRoomz {data.city}</Text>
                                 <Text style={{ color: 'grey' }}>
                                     Refundable
                         </Text>
@@ -67,17 +73,17 @@ function Inputbooking(props) {
                             <View style={{ flexDirection: 'row' }}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text style={{ fontSize: 12, color: 'grey' }}>Check in</Text>
-                                    <Text style={{ fontSize: 10, top: 10 }}>21 Jan, 2020</Text>
+                                    <Text style={{ fontSize: 10, top: 10 }}>{data.checkin.toLocaleDateString()}</Text>
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 12, color: 'grey', top: 5 }}>1 Night</Text>
+                                    <Text style={{ fontSize: 12, color: 'grey', top: 5 }}>{data.nights} Night</Text>
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text style={{ fontSize: 12, color: 'grey' }}>Check Out</Text>
-                                    <Text style={{ fontSize: 10, top: 10 }}>22 Jan, 2020</Text>
+                                    <Text style={{ fontSize: 10, top: 10 }}>{data.checkout.toLocaleDateString()}</Text>
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text style={{ fontSize: 12, color: 'grey', top: 5 }}>1 Room(s)</Text>
+                                    <Text style={{ fontSize: 12, color: 'grey', top: 5 }}>{data.room} Room(s)</Text>
                                 </View>
 
                             </View>
@@ -98,15 +104,21 @@ function Inputbooking(props) {
                             <Form style={{ flex: 1, marginHorizontal: 20, }}>
                                 <Item floatingLabel >
                                     <Label style={{ fontSize: 15 }}>Email</Label>
-                                    <Input keyboardType="email-address" />
+                                    <Input keyboardType="email-address"
+                                    value={input.email}
+                                    onChangeText={v=> setInput({...input, email:v})} />
                                 </Item>
                                 <Item floatingLabel>
                                     <Label style={{ fontSize: 15 }}>Name</Label>
-                                    <Input />
+                                    <Input
+                                    value={input.name}
+                                    onChangeText={v=> setInput({...input, name:v})} />
                                 </Item>
                                 <Item floatingLabel >
                                     <Label style={{ fontSize: 15 }}>Phone </Label>
-                                    <Input keyboardType="phone-pad" />
+                                    <Input keyboardType="phone-pad" 
+                                    value={input.no_hp}
+                                    onChangeText={v=> setInput({...input, no_hp:v})} />
                                 </Item>
                             </Form>
 
@@ -118,10 +130,10 @@ function Inputbooking(props) {
                     <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', flex: 1, flexDirection: 'row' }}>
                         <Text style={{ color: 'grey', fontSize: 14 }}>
                             Total Payable Amount </Text>
-                        <Text style={{ color: 'green', fontSize: 16, fontWeight: 'bold' }}>Rp.100.000</Text>
+                        <Text style={{ color: 'green', fontSize: 16, fontWeight: 'bold' }}>Rp. {data.total} </Text>
                     </View>
                     <View style={{ backgroundColor: 'white', flex: 1 }}>
-                        <TouchableOpacity onPress={() => alert('Pay confirmed')}
+                        <TouchableOpacity onPress={postBook}
                             style={{ backgroundColor: 'red', marginHorizontal: 10, marginVertical: 5, flex: 1, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 16 }}>Pay Now</Text>
                         </TouchableOpacity>
@@ -148,5 +160,12 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = state => {
+    return {
+        profile: state.profile,
+        auth: state.auth,
+        booking:state.booking
+    }
+}
 
-export default Inputbooking
+export default connect(mapStateToProps)(Inputbooking)

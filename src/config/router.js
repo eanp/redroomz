@@ -6,7 +6,7 @@ import { Text } from 'native-base'
 
 import {
     Login, Register, ForgotPass, Splash, Profile,
-    ChangePassword, EditProfile,SearchHotels, RedCash, Payment
+    ChangePassword, EditProfile, SearchHotels, RedCash, Payment
 } from '../pages/'
 
 import MeIcon from 'react-native-vector-icons/Entypo'
@@ -203,8 +203,8 @@ const AppStack = createStackNavigator(
         SearchHotels: { screen: SearchHotels },
         EditProfile: { screen: EditProfile },
         RedCash: { screen: RedCash },
-        DetailHotel:{screen:Detail},
-        Payment:{screen:Payment},
+        DetailHotel: { screen: Detail },
+        Payment: { screen: Payment },
         Inputbooking: { screen: Inputbooking }
     }, {
     headerMode: 'none'
@@ -217,7 +217,7 @@ const SwitchNav = createSwitchNavigator({
     AuthStack,
     Splash: { screen: Splash },
 }, {
-    initialRouteName: 'AppStack',
+    initialRouteName: 'Splash',
 })
 
 const AppContainer = createAppContainer(SwitchNav)

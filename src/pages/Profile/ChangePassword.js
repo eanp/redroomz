@@ -6,6 +6,8 @@ import RNRecaptcha from 'rn-recaptcha';
 
 import { connect } from 'react-redux';
 import ReactNativeModal from 'react-native-modal';
+import Axios from 'axios';
+import { postLogout } from '../../redux/actions/postData';
 
 const style = StyleSheet.create({
    root: {
@@ -22,11 +24,29 @@ function ChangePassword(props) {
    const [input, setInput] = useState({})
    const [modalVisible, setModalVisible] = useState(false)
 
-   const postLogin = async () => {
-      //  await props.dispatch(getAuth(input))
-      setModalVisible(true)
-   }
+   
 
+   async function postChange() {
+      if (input.password !== input.confirmPassword) {
+         alert('pasword tidak sesuai')
+         return;
+      }
+      const res = await Axios({
+         method:'put',
+         url: `http://192.168.0.115:3000/profile/change_password`,
+         data: input ,
+         headers: { 'Authorization': 'Bearer ' + props.auth.token }
+      })
+      console.log(res)
+      console.log(res.data)
+      if (res.data.success) {
+         alert('sukses')
+         await props.dispatch(postLogout(props.auth.token))
+         if (props.auth.status.success) {
+            props.navigation.navigate('Login')
+         } 
+      } else alert(res.data.msg)
+   }
 
    return (
       <Container >
@@ -60,7 +80,7 @@ function ChangePassword(props) {
                      value={input.newPassword}
                      selectionColor={'#c00'}
                      secureTextEntry={true}
-                     onChangeText={(e) => setInput({ ...input, newPassword: e })}
+                     onChangeText={(e) => setInput({ ...input, password: e })}
                   />
                   <Icon active name='eye' />
                </Item>
@@ -76,7 +96,7 @@ function ChangePassword(props) {
                </Item>
 
                <Button block rounded danger
-                  onPress={postLogin}
+                  onPress={postChange}
                   style={{ paddingBottom: 4, marginHorizontal: 8, backgroundColor: 'red' }}>
                   <Text style={{ color: '#fff' }}> Send </Text>
                </Button>
@@ -107,5 +127,5 @@ const mapStateToProps = state => {
    }
 }
 
-// export default connect(mapStateToProps)(Register)
-export default ChangePassword
+export default connect(mapStateToProps)(ChangePassword)
+// export default ChangePassword

@@ -1,28 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import {
     Text, View, StyleSheet, StatusBar, ScrollView,
     TouchableOpacity, TextInput, Image, ImageBackground
 } from 'react-native'
-import {
-    Container, Header, Content, Card, CardItem, Icon,
-    ScrollableTab, Right, Tab, Tabs, TabHeading, Badge, Left, Body
-} from 'native-base';
 import { withNavigation } from 'react-navigation'
 
 import MoIcon from 'react-native-vector-icons/Octicons'
-import MaIcon from 'react-native-vector-icons/AntDesign'
-import MeIcon from 'react-native-vector-icons/Entypo'
-import MmIcon from 'react-native-vector-icons/AntDesign'
-import McIcon from 'react-native-vector-icons/MaterialCommunityIcons'
-import MfIcon from 'react-native-vector-icons/FontAwesome5'
-import MzIcon from 'react-native-vector-icons/Ionicons'
 
 import o1 from '../assets/o1.png'
 import o2 from '../assets/o2.png'
 import Imageroom from '../assets/hotel1.jpg';
+import { connect } from 'react-redux'
+import moment from 'moment'
+import { getBooking } from '../redux/actions/getData'
 
 
-function ListBooking(props) {
+function ListBooking({data}) {
+
+  const nights = () => moment(data.checkout).startOf('day').diff(moment(data.checkin).startOf('day'),'days')
+
   return (
     <View style={{marginTop: 20, elevation: 5}}>
       <View
@@ -41,12 +37,14 @@ function ListBooking(props) {
         />
         <View style={{marginLeft: 5, marginTop: 10}}>
           <Text style={{fontSize: 16, fontWeight: 'bold'}}>
-            RedRoomz Sukasari near Mall Ekalosari
+            {data.name_hotel}
+            {/* RedRoomz Sukasari near Mall Ekalosari */}
           </Text>
           <Text style={{fontSize: 14, color: 'grey'}}>
-            Bogor | 30 Januari 2020 - 31 Januari 2020
+            {data.city} | {data.checkin.split('T')[0]} to {data.checkout.split('T')[0]}
+            {/* Bogor | 30 Januari 2020 - 31 Januari 2020 */}
           </Text>
-          <Text style={{fontSize: 14, color: 'grey'}}>1 Room 1 Night(s)</Text>
+          <Text style={{fontSize: 14, color: 'grey'}}>{data.room} Room {nights()} Night(s)</Text>
           <Text style={{color: 'green', marginTop: 5}}>
             <MoIcon name="primitive-dot" style={{fontSize: 20}} /> Confirmed
           </Text>
@@ -114,15 +112,22 @@ function CenterBooking(props) {
             <View style={{ marginTop: 220 }}>
                 <Text style={{ top: -20 }}>You have no new bookings</Text>
             </View>
+            <TouchableOpacity
+            onPress={()=> props.navigation.navigate('SearchHotels')}>
+
             <View style={{ backgroundColor: '#c00', height: 40, width: 120, borderRadius: 20, justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ color: 'white' }}>Start Exploring</Text>
             </View>
+            </TouchableOpacity>
         </View>
     )
 }
 
 
 function Bookings(props) {
+    useEffect(() => {
+      props.dispatch(getBooking(props.auth.token))
+    }, [props.booking.status, props.navigation])
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
             <View style={{ flexDirection: 'row' }}>
@@ -132,9 +137,14 @@ function Bookings(props) {
             </View>
             <View style={{ marginHorizontal: 15 }}>
                 <ScrollView>
-                    <ListBooking />
-                    <ListBooking />
-                    <ListBooking />
+                  {props.booking.data && props.booking.data.length===0 &&
+                    <CenterBooking navigation={props.navigation} />
+                  }
+                  {props.booking.data && props.booking.data.map((v,i)=>
+                    <ListBooking key={i} data={v} />
+                  )}
+                    {/* <ListBooking />
+                    <ListBooking /> */}
                 </ScrollView>
             </View>
         </View >
@@ -154,5 +164,13 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    booking: state.booking
+  }
+}
 
-export default Bookings
+export default connect(mapStateToProps)(Bookings)
+
+// export default Bookings

@@ -4,7 +4,7 @@ import qs from 'qs'
 import { APP_URL } from './config'
 
 
-const url = "http://192.168.0.110:8080"
+const url = "http://192.168.0.115:3000"
 
 
 export const postLogout = (token) => {
@@ -12,7 +12,7 @@ export const postLogout = (token) => {
       type: 'POST_LOGOUT',
       payload: axios({
          method: 'post',
-         url: `${url}/user/logout`,
+         url: `${url}/logout`,
          headers: { 'Authorization': 'Bearer ' + token }
       })
    }
@@ -22,18 +22,18 @@ export const postAuth = (data) => {
       type: 'POST_AUTH',
       payload: axios({
          method: 'post',
-         url: `${url}/user/registrasi`
+         url: `${url}/register`
          , data: data
       })
    }
 }
 
-export const postCart = (token, data) => {
+export const postBooking = (token, data,id_hotel) => {
    return {
-      type: 'POST_CART',
+      type: 'POST_BOOKING',
       payload: axios({
          method: 'post',
-         url: `${url}/cart`,
+         url: `${url}/booking/${id_hotel}`,
          data: data,
          headers: { 'Authorization': 'Bearer ' + token }
       })
@@ -80,7 +80,7 @@ export const postProfile = (token, data) => {
    return {
       type: 'POST_PROFILE',
       payload: axios({
-         method: 'post',
+         method: 'put',
          url: `${url}/profile`,
          data,
          headers: { 'Authorization': 'Bearer ' + token }

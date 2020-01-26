@@ -12,20 +12,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
   Icon,
-  ScrollableTab,
-  Right,
-  Tab,
-  Tabs,
-  TabHeading,
-  Badge,
-  Left,
-  Body,
   Footer,
   DatePicker,
   Item,
@@ -66,147 +53,7 @@ import Servicebar from '../component/Servicebar';
 
 import Imageroom from '../assets/hotel1.jpg';
 import maps from '../assets/maps.png';
-
-class Checker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      chosenDateIn: new Date(),
-      chosenDate: new Date(),
-      selected2: undefined,
-    };
-    this.setDateIn = this.setDateIn.bind(this);
-    this.setDate = this.setDate.bind(this);
-  }
-  onValueChange2(value: number) {
-    this.setState({
-      selected2: value,
-    });
-  }
-  setDateIn(newDate) {
-    this.setState({ chosenDateIn: newDate });
-  }
-  setDate(newDate) {
-    this.setState({ chosenDate: newDate });
-  }
-  render() {
-    return (
-      <View
-        style={{
-          flexDirection: 'row',
-          height: 80,
-          backgroundColor: '#ddd',
-          borderRadius: 10,
-        }}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            left: 15,
-            top: 5,
-          }}>
-          <Text style={{ color: 'grey' }}>Check-In</Text>
-          <DatePicker
-            minimumDate={new Date(2019, 1, 1)}
-            maximumDate={new Date(2021, 12, 31)}
-            locale={'en'}
-            timeZoneOffsetInMinutes={undefined}
-            modalTransparent={false}
-            animationType={'fade'}
-            androidMode={'default'}
-            placeHolderText="Select Date"
-            placeHolderTextStyle={{ color: 'grey', fontSize: 10, top: -10 }}
-            textStyle={{ color: 'grey', fontSize: 10, top: -10 }}
-            onDateChange={this.setDateIn}
-            disabled={false}
-          />
-          <Text style={{ fontSize: 12, fontWeight: 'bold', top: -15 }}>
-            {this.state.chosenDateIn.toString().substr(4, 12)}
-          </Text>
-        </View>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <MaIcon name="arrowright" style={{ fontSize: 20, color: 'grey' }} />
-        </View>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            left: -15,
-            top: 5,
-          }}>
-          <Text style={{ color: 'grey' }}>Check-Out</Text>
-          <DatePicker
-            minimumDate={new Date(2019, 1, 1)}
-            maximumDate={new Date(2021, 12, 31)}
-            locale={'en'}
-            timeZoneOffsetInMinutes={undefined}
-            modalTransparent={false}
-            animationType={'fade'}
-            androidMode={'default'}
-            placeHolderText="Select Date"
-            placeHolderTextStyle={{ color: 'grey', fontSize: 10, top: -10 }}
-            textStyle={{ color: 'grey', fontSize: 10, top: -10 }}
-            onDateChange={this.setDate}
-            disabled={false}
-          />
-          <Text style={{ fontSize: 12, fontWeight: 'bold', top: -15 }}>
-            {this.state.chosenDate.toString().substr(4, 12)}
-          </Text>
-        </View>
-        <View
-          style={{
-            borderLeftWidth: 1,
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderColor: 'grey',
-          }}>
-          <Text style={{ color: 'grey', top: 5 }}>Room(s)</Text>
-          <Item picker style={{ elevation: 0, width: 70 }}>
-            <Picker
-              mode="dropdown"
-              iosIcon={<Icon name="arrow-down" style={{}} />}
-              style={{ left: 5 }}
-              placeholder="1"
-              placeholderStyle={{ color: '#bfc6ea' }}
-              placeholderIconColor="#007aff"
-              selectedValue={this.state.selected2}
-              onValueChange={this.onValueChange2.bind(this)}>
-              <Picker.Item label="1" value="1" />
-              <Picker.Item label="2" value="2" />
-              <Picker.Item label="3" value="3" />
-              <Picker.Item label="4" value="4" />
-              <Picker.Item label="5" value="5" />
-            </Picker>
-          </Item>
-        </View>
-      </View>
-    );
-  }
-}
-
-class Location extends Component {
-  render() {
-    return (
-      <View style={{ flexDirection: 'row', height: 100 }}>
-        <View>
-          <Image source={maps} style={{ height: 90, width: 90 }} />
-        </View>
-        <View style={{ marginLeft: 10, flex: 1, color: '#ddd' }}>
-          <Text style={{ color: 'grey' }}>
-            Siloam Hospital Kebon jerouk, jalan masjid rtrw banyak banget
-          </Text>
-          <Text style={{ color: 'grey', fontSize: 14, marginTop: 10 }}>
-            <MeIcon name="location-pin" style={{ color: 'red', fontSize: 14 }} />{' '}
-            | 2.3 km from Monas Jakarta
-          </Text>
-        </View>
-      </View>
-    );
-  }
-}
+import moment from 'moment';
 
 class Lines extends Component {
   render() {
@@ -234,12 +81,12 @@ class Headbar extends Component {
   }
 }
 
-class DetailTitle extends Component {
-  render() {
-    return (
+function DetailTitle({ data }) {
+  return (
+    <>
       <View style={{ marginTop: 15 }}>
         <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-          RedRoomz near Ekalosari Mall Bogor
+          {data.name}
         </Text>
         <View style={{ flexDirection: 'row', marginVertical: 10 }}>
           <View
@@ -266,17 +113,79 @@ class DetailTitle extends Component {
           <Text style={{ color: 'red', fontSize: 14 }}>See All reviews</Text>
         </View>
       </View>
-    );
-  }
+      <Lines />
+      <View>
+        <Text
+          style={{
+            marginBottom: 5,
+            left: 3,
+            fontSize: 14,
+            fontWeight: 'bold',
+          }}>
+          Location
+              </Text>
+      </View>
+      <View style={{ flexDirection: 'row', height: 100 }}>
+        <View>
+          <Image source={maps} style={{ height: 90, width: 90 }} />
+        </View>
+        <View style={{ marginLeft: 10, flex: 1, color: '#ddd' }}>
+          <Text style={{ color: 'grey' }} numberOfLines={3}>
+            {data.description}
+            Siloam Hospital Kebon jerouk, jalan masjid rtrw banyak banget
+          </Text>
+          <Text style={{ color: 'grey', fontSize: 14, marginTop: 10,textTransform:'capitalize' }}>
+            <MeIcon name="location-pin" style={{ color: 'red', fontSize: 14 }} />{' '}
+            | {data.city}
+          </Text>
+        </View>
+      </View>
+      <Lines />
+    </>
+  );
 }
 
+
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checkin: new Date(),
+      checkout: new Date(),
+      room: 1,
+    };
+    this.setDateIn = this.setDateIn.bind(this);
+    this.setDate = this.setDate.bind(this);
+  }
+  onValueChange2(value: number) {
+    this.setState({
+      room: value,
+    });
+  }
+  setDateIn(newDate) {
+    this.setState({ checkin: newDate });
+  }
+  setDate(newDate) {
+    this.setState({ checkout: newDate });
+  }
+
+  totalAmount(price){
+    let number = this.state.room * price * 
+    moment(this.state.checkout).startOf('day').diff(moment(this.state.checkin).startOf('day'),'days')
+    return number
+  }
+
+  currencyFormat(price) {
+    let number = this.totalAmount(price)
+    return 'Rp ' + number.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+  }
   render() {
+    const data = this.props.navigation.state.params.data
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <ScrollView>
           <ImageBackground
-            source={Imageroom}
+            source={{uri: data.image}}
             imageStyle={{ opacity: 0.8 }}
             style={{ height: 200 }}>
             <View style={{ marginHorizontal: 15, marginTop: 15 }}>
@@ -284,22 +193,95 @@ export default class App extends Component {
             </View>
           </ImageBackground>
           <View style={{ marginHorizontal: 13 }}>
-            <DetailTitle />
-            <Lines />
-            <View>
-              <Text
+            <DetailTitle data={data} />
+            <View
+              style={{
+                flexDirection: 'row',
+                height: 80,
+                backgroundColor: '#ddd',
+                borderRadius: 10,
+              }}>
+              <View
                 style={{
-                  marginBottom: 5,
-                  left: 3,
-                  fontSize: 14,
-                  fontWeight: 'bold',
+                  flex: 1, justifyContent: 'center', alignItems: 'center', left: 15, top: 5,
                 }}>
-                Location
-              </Text>
+                <Text style={{ color: 'grey' }}>Check-In</Text>
+                <DatePicker
+                  minimumDate={new Date()}
+                  maximumDate={this.state.checkout}
+                  locale={'en'}
+                  timeZoneOffsetInMinutes={undefined}
+                  modalTransparent={false}
+                  animationType={'fade'}
+                  androidMode={'default'}
+                  placeHolderText="Select Date"
+                  placeHolderTextStyle={{ color: 'grey', fontSize: 10, top: -10 }}
+                  textStyle={{ color: 'grey', fontSize: 10, top: -10 }}
+                  onDateChange={this.setDateIn}
+                  disabled={false}
+                />
+                <Text style={{ fontSize: 12, fontWeight: 'bold', top: -15 }}>
+                  {this.state.checkin.toString().substr(4, 12)}
+                </Text>
+              </View>
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <MaIcon name="arrowright" style={{ fontSize: 20, color: 'grey' }} />
+              </View>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  left: -15,
+                  top: 5,
+                }}>
+                <Text style={{ color: 'grey' }}>Check-Out</Text>
+                <DatePicker
+                  minimumDate={this.state.checkin}
+                  maximumDate={new Date(2021, 12, 31)}
+                  locale={'en'}
+                  timeZoneOffsetInMinutes={undefined}
+                  modalTransparent={false}
+                  animationType={'fade'}
+                  androidMode={'default'}
+                  placeHolderText="Select Date"
+                  placeHolderTextStyle={{ color: 'grey', fontSize: 10, top: -10 }}
+                  textStyle={{ color: 'grey', fontSize: 10, top: -10 }}
+                  onDateChange={this.setDate}
+                  disabled={false}
+                />
+                <Text style={{ fontSize: 12, fontWeight: 'bold', top: -15 }}>
+                  {this.state.checkout.toString().substr(4, 12)}
+                </Text>
+              </View>
+              <View
+                style={{
+                  borderLeftWidth: 1,
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderColor: 'grey',
+                }}>
+                <Text style={{ color: 'grey', top: 5 }}>Room(s)</Text>
+                <Item picker style={{ elevation: 0, width: 70 }}>
+                  <Picker
+                    mode="dropdown"
+                    iosIcon={<Icon name="arrow-down" style={{}} />}
+                    style={{ left: 5 }}
+                    placeholder="1"
+                    placeholderStyle={{ color: '#bfc6ea' }}
+                    placeholderIconColor="#007aff"
+                    selectedValue={this.state.room}
+                    onValueChange={this.onValueChange2.bind(this)}>
+                    <Picker.Item label="1" value={1} />
+                    <Picker.Item label="2" value={2} />
+                    <Picker.Item label="3" value={3} />
+                    <Picker.Item label="4" value={4} />
+                    <Picker.Item label="5" value={5} />
+                  </Picker>
+                </Item>
+              </View>
             </View>
-            <Location />
-            <Lines />
-            <Checker />
             <Lines />
             <View>
               <Text
@@ -340,19 +322,23 @@ export default class App extends Component {
         <Footer style={{ backgroundColor: '#fff' }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ right: 60, justifyContent: 'center' }}>
-              <Text style={{ fontSize: 14, fontWeight: 'bold' }}>Rp.20.000 </Text>
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {this.currencyFormat(data.price)}  </Text>
               <Text style={{ color: 'grey', fontSize: 10 }}>
-                for 1 Night (tax included)
+                for {moment(this.state.checkout).startOf('day').diff(moment(this.state.checkin).startOf('day'),'days')} Night (tax included)
               </Text>
             </View>
             <View style={{ left: 60, justifyContent: 'center' }}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('Inputbooking')}>
+              <TouchableOpacity 
+              onPress={() => this.props.navigation.navigate('Inputbooking',
+               {data: {...data, ...this.state, total: this.totalAmount(data.price) ,
+               nights: moment(this.state.checkout).startOf('day').diff(moment(this.state.checkin).startOf('day'),'days'), } })}>
                 <View
                   style={{
                     height: 32,
                     width: 90,
                     backgroundColor: 'red',
                     borderRadius: 8,
+
                     justifyContent: 'center',
                     alignItems: 'center',
                   }}>

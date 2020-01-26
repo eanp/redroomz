@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
 import {
-    Text, View, StyleSheet,  ScrollView,
-    TouchableOpacity,  Image, ImageBackground
+  Text, View, StyleSheet, ScrollView,
+  TouchableOpacity, Image, ImageBackground
 } from 'react-native'
 import { Badge, } from 'native-base';
 import { withNavigation } from 'react-navigation'
@@ -22,6 +22,8 @@ import RecomendedProperties from '../component/RecomendedProperties';
 import NearbyProperties from '../component/NearbyProperties';
 import PromosOffers from '../component/PromosOffers';
 import Servicebar from '../component/Servicebar';
+import { connect } from 'react-redux';
+import { getProfile } from '../redux/actions/getData';
 
 class Headbar extends Component {
   render() {
@@ -36,7 +38,7 @@ class Headbar extends Component {
             <MoIcon style={styles.headicon} name="gift" />
           </View>
           <View style={styles.icontag}>
-            <MaIcon style={styles.headicon} name="wallet" onPress={()=>this.props.navigation.navigate('RedCash')} />
+            <MaIcon style={styles.headicon} name="wallet" onPress={() => this.props.navigation.navigate('RedCash')} />
             <Badge
               style={{
                 height: 12,
@@ -46,7 +48,7 @@ class Headbar extends Component {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <Text style={{ fontSize: 10, color: 'white' }}>150k</Text>
+              <Text style={{ fontSize: 10, color: 'white' }}>{(this.props.saldo/1000).toFixed(0)}k</Text>
             </Badge>
           </View>
           <View style={(styles.icontag, { marginLeft: 10 })}>
@@ -138,17 +140,17 @@ class Headcalendar extends Component {
 }
 
 class Headbutton extends Component {
-    render() {
-        return (
-            <TouchableOpacity
-            onPress={()=>this.props.navigation.navigate('SearchHotels')}>
+  render() {
+    return (
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('SearchHotels')}>
 
-                <View style={{ backgroundColor: '#FB4D4E', height: 50, marginTop: 15, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>Search RedRoomz</Text>
-                </View>
-            </TouchableOpacity>
-        )
-    }
+        <View style={{ backgroundColor: '#FB4D4E', height: 50, marginTop: 15, borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>Search RedRoomz</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
 }
 
 class City extends Component {
@@ -208,80 +210,102 @@ class Travel extends Component {
   }
 }
 
-export default class App extends Component {
-    render() {
-        return (
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <ScrollView>
-                    <ImageBackground source={imagebanner} imageStyle=
-                        {{ opacity: 0.8 }} style={{ height: 270 }}>
-                        <View style={{ marginHorizontal: 15, marginTop: 15 }}>
-                            <Headbar navigation={this.props.navigation} />
-                            <Headsearch />
-                            <Headcalendar />
-                            <Headbutton navigation={this.props.navigation} />
-                        </View>
-                    </ImageBackground>
-                    <View style={{ flex: 1, backgroundColor: "white", marginTop: 10, marginHorizontal: 15 }}>
-                        <View>
-                            <View><Text style={{ marginVertical: 5, left: 3, fontSize: 16 }}>Recomended Properties</Text>
-                            </View>
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                                <RecomendedProperties navigation={this.props.navigation} />
-                                <RecomendedProperties />
-                                <RecomendedProperties />
-                                <RecomendedProperties />
-                                <RecomendedProperties />
-                                <RecomendedProperties />
-                            </ScrollView>
-                        </View>
-                        <View>
-                            <View><Text style={{ marginTop: 20, marginBottom: 5, left: 3, fontSize: 16 }}>Promos and Offers</Text>
-                            </View>
-                            <PromosOffers />
+class App extends Component {
 
-                        </View>
-                        <View>
-                            <View><Text style={{ marginTop: 20, marginVertical: 5, left: 3, fontSize: 16 }}>Nearby Properties</Text>
-                            </View>
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                                <NearbyProperties />
-                            </ScrollView>
-                        </View>
-                        <View>
-                            <Text style={{ marginTop: 20, marginBottom: -10, left: 3, fontSize: 16 }}>RedRoomz Service Guarantee</Text>
-                        </View>
-                        <Servicebar />
-                        <View style={{ marginTop: 10 }}>
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                                <City />
-                                <City />
-                                <City />
-                                <City />
-                                <City />
-                                <City />
-                                <City />
-                            </ScrollView>
-                        </View>
-                        <View style={{}}>
-                            <Text style={{ marginTop: 30, left: 3, fontSize: 16 }}>
-                                Travel Stories
+  componentDidMount() {
+    this.props.dispatch(getProfile(this.props.auth.token))
+    if (!(this.props.auth.token)) {
+      alert('no token')
+      setTimeout(() => {
+        this.props.navigation.navigate('Login')
+      }, 2000);
+    } 
+  }
+
+  render() {
+    return (
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <ScrollView>
+          <ImageBackground source={imagebanner} imageStyle=
+            {{ opacity: 0.8 }} style={{ height: 270 }}>
+            <View style={{ marginHorizontal: 15, marginTop: 15 }}>
+              <Headbar navigation={this.props.navigation} saldo={this.props.profile.data && this.props.profile.data.saldo || 0} />
+              <Headsearch />
+              <Headcalendar />
+              <Headbutton navigation={this.props.navigation} />
+            </View>
+          </ImageBackground>
+          <View style={{ flex: 1, backgroundColor: "white", marginTop: 10, marginHorizontal: 15 }}>
+            <View>
+              <View><Text style={{ marginVertical: 5, left: 3, fontSize: 16 }}>Recomended Properties</Text>
+              </View>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                {/* <RecomendedProperties navigation={this.props.navigation} /> */}
+                <RecomendedProperties />
+                <RecomendedProperties />
+                <RecomendedProperties />
+                <RecomendedProperties />
+                <RecomendedProperties />
+                <RecomendedProperties />
+              </ScrollView>
+            </View>
+            <View>
+              <View><Text style={{ marginTop: 20, marginBottom: 5, left: 3, fontSize: 16 }}>Promos and Offers</Text>
+              </View>
+              <PromosOffers />
+
+            </View>
+            <View>
+              <View><Text style={{ marginTop: 20, marginVertical: 5, left: 3, fontSize: 16 }}>Nearby Properties</Text>
+              </View>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <NearbyProperties />
+              </ScrollView>
+            </View>
+            <View>
+              <Text style={{ marginTop: 20, marginBottom: -10, left: 3, fontSize: 16 }}>RedRoomz Service Guarantee</Text>
+            </View>
+            <Servicebar />
+            <View style={{ marginTop: 10 }}>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <City />
+                <City />
+                <City />
+                <City />
+                <City />
+                <City />
+                <City />
+              </ScrollView>
+            </View>
+            <View style={{}}>
+              <Text style={{ marginTop: 30, left: 3, fontSize: 16 }}>
+                Travel Stories
                             </Text>
-                        </View>
-                        <View>
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                                <Travel />
-                                <Travel />
-                                <Travel />
-                                <Travel />
-                            </ScrollView>
-                        </View>
-                    </View>
-                </ScrollView>
-            </View >
-        )
-    }
+            </View>
+            <View>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <Travel />
+                <Travel />
+                <Travel />
+                <Travel />
+              </ScrollView>
+            </View>
+          </View>
+        </ScrollView>
+      </View >
+    )
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    profile:state.profile
+  }
+}
+
+// export default Login
+export default connect(mapStateToProps)(App)
 
 const styles = StyleSheet.create({
   headicon: {

@@ -6,42 +6,36 @@ import { Button, Container, Header, Title, Body, Item, Form, Label, Input, Text,
 import logo from '../assets/img/logo.png'
 import { connect } from 'react-redux';
 import ReactNativeModal from 'react-native-modal';
+import { postAuth } from '../redux/actions/postData';
 
-const style = StyleSheet.create({
-  root: {
-    flex: 1,
-    padding: 16,
-    justifyContent: 'center'
-  },
-});
 
 function Register(props) {
   const [input, setInput] = useState({})
   const [modalVisible, setModalVisible] = useState(false)
 
-  const postLogin = async () => {
-    //  await props.dispatch(getAuth(input))
+  const putData = async () => {
     setModalVisible(true)
+    await props.dispatch(postAuth(input))
     console.log(props.auth)
-    if (props.auth.status.success) props.navigation.navigate('Home')
-    else if (props.auth.isError) {
-      Toast.show({
-        text: "Terdapat Error di database",
-        buttonText: "Okay",
-        duration: 2000
-      })
-    } else if (!(props.auth.status.success)) Toast.show({
-      text: props.auth.status.msg,
-      buttonText: "Okay",
-      duration: 2000
-    })
+    // setModalVisible(false)
+    // if (props.auth.status.success) props.navigation.goBack()
+    // else if (props.auth.isError) {
+    //   Toast.show({
+    //     text: "Terdapat Error di database",
+    //     buttonText: "Okay",
+    //     duration: 2000
+    //   })
+    // } else if (!(props.auth.status.success)) Toast.show({
+    //   text: props.auth.status.msg,
+    //   buttonText: "Okay",
+    //   duration: 2000
+    // })
   }
 
 
 
   return (
     <Container >
-      {/* <Content padder contentContainerStyle={{ flexGrow: 1, backgroundColor:'fff', opacity:1 }}> */}
       <Header transparent >
         <Left style={{ justifyContent: 'center', flex: 1 }}>
           <Icon onPress={()=>props.navigation.goBack()}
@@ -87,23 +81,16 @@ function Register(props) {
 
         {/* FORM */}
         <Form style={{ marginBottom: 'auto', marginTop: 16, paddingRight: 16 }} >
-          <Row >
+          
             <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex: 1 }} >
-              <Input placeholder="First Name"
+              <Input placeholder="Name"
                 style={{ paddingLeft: 8, flex: 1 }}
-                value={input.first_name}
+                value={input.name}
                 selectionColor={'#c00'}
-                onChangeText={(e) => setInput({ ...input, first_name: e })}
+                onChangeText={(e) => setInput({ ...input, name: e })}
               />
             </Item>
-            <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex: 1 }} >
-              <Input placeholder="Last Name"
-                value={input.last_name}
-                style={{ flex: 1, paddingLeft: 16 }}
-                selectionColor={'#c00'}
-                onChangeText={(e) => setInput({ ...input, last_name: e })} />
-            </Item>
-          </Row>
+        
 
 
           <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4 }} >
@@ -126,16 +113,16 @@ function Register(props) {
             <Label
               style={{ paddingLeft: 8 }}>+62</Label>
             <Input placeholder="Enter Phone Number"
-              value={input.phone}
+              value={input.no_hp}
               selectionColor={'#c00'}
               keyboardType='phone-pad'
-              onChangeText={(e) => setInput({ ...input, phone: e })}
+              onChangeText={(e) => setInput({ ...input, no_hp: e })}
             />
           </Item>
 
           {/* BUTTON */}
           <Button block danger
-            onPress={() => postLogin()}
+            onPress={() => putData()}
             style={{ marginLeft: 8, marginHorizontal: 0, backgroundColor: 'red' }}>
             <Text style={{ color: '#fff' }}> SignUp </Text>
           </Button>
@@ -153,17 +140,18 @@ function Register(props) {
         </Row>
       </Content>
       <ReactNativeModal isVisible={modalVisible}>
-        <View style={{}}>
+        {props.auth.isLoading  && <View style={{}}>
           <Spinner />
-        </View>
+        </View>}
 
-        <View style={{ backgroundColor: '#eee', padding: 16, }}>
+        {!props.auth.isLoading && props.auth.status &&
+         <View style={{ backgroundColor: '#eee', padding: 16, }}>
           <Text>User has been created</Text>
           <Button style={{ borderRadius: 4, backgroundColor: 'red' }}
-            onPress={() => setModalVisible(false)}>
+            onPress={() => {setModalVisible(false);props.navigation.goBack()}}>
             <Text>finish</Text>
           </Button>
-        </View>
+        </View>}
       </ReactNativeModal>
     </Container>
   );
@@ -176,5 +164,5 @@ const mapStateToProps = state => {
   }
 }
 
-// export default connect(mapStateToProps)(Register)
-export default Register
+export default connect(mapStateToProps)(Register)
+// export default Register

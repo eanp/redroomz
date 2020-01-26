@@ -1,0 +1,742 @@
+[{
+      "id_city": 1,
+      "name": "Alpine Hotel",
+      "harga": 503501,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041683/alpine-hotel-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Mandarin Oriental 10",
+      "harga": 2930403,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000525/mandarin-oriental-jakarta-photo11.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Le Meridien 10",
+      "harga": 2178000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000506/le-meridien-jakarta-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 3,
+      "name": "Raffles 10",
+      "harga": 3484800,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000569/raffles-jakarta-photo12.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 2,
+      "name": "Fairmont 10",
+      "harga": 3678914,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000582/fairmont-jakarta-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 2,
+      "name": "Grand Hyatt 10",
+      "harga": 3270147,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000524/grand-hyatt-jakarta-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Mercure Jakarta Simatupang",
+      "harga": 1089000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000873/mercure-jakarta-simatupang-photo26.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Holiday Inn Express Jakarta Pluit Citygate",
+      "harga": 621327,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000594/holiday-inn-express-jakarta-pluit-citygate-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 3,
+      "name": "Ibis Styles Jakarta Sunter",
+      "harga": 600001,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000040000/0000039058/ibis-styles-jakarta-sunter-photo1.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Hotel Indonesia Kempinski 10",
+      "harga": 3262519,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000512/hotel-indonesia-kempinski-jakarta-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 4,
+      "name": "Pullman Jakarta Indonesia",
+      "harga": 2026751,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000519/pullman-jakarta-indonesia-photo1.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 4,
+      "name": "House of Arsonia Bougainvillea",
+      "harga": 310000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041709/house-of-arsonia-bougainvillea-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "House of Arsonia Flamboyant",
+      "harga": 310000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041721/house-of-arsonia-flamboyant-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Fontana Residencia Guest House",
+      "harga": 339999,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041728/fontana-residencia-guest-house-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 2,
+      "name": "ibis Styles Bogor Raya",
+      "harga": 605000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000067000/0000066263/ibis-styles-bogor-raya-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "The Packer Lodge - Hostel",
+      "harga": 280125,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041679/the-packer-lodge-hostel-photo22.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 4,
+      "name": "Holiday Inn Cikarang Jababeka",
+      "harga": 889468,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000043000/0000042033/holiday-inn-cikarang-jababeka-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Hotel Banyuwangi Sintera",
+      "harga": 400001,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041631/hotel-banyuwangi-sintera-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Holiday Inn Express Jakarta International Expo",
+      "harga": 1471566,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000039000/0000038938/holiday-inn-express-jakarta-international-expo-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Four Seasons Hotel 10",
+      "harga": 3296703,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041647/four-seasons-hotel-jakarta-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "The Westin 10",
+      "harga": 2855600,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041674/the-westin-jakarta-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Four Points by Sheraton Jakarta Thamrin",
+      "harga": 1087790,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041694/four-points-by-sheraton-jakarta-thamrin-photo4.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Hotel Lautze Indah",
+      "harga": 216501,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041707/hotel-lautze-indah-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Coin's Hotel",
+      "harga": 450001,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041670/coins-hotel-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Luxury Apartment by Mediapura",
+      "harga": 725001,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041626/luxury-apartment-by-mediapura-photo9.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Maxwell Sweet Apartment",
+      "harga": 1250000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041663/maxwell-sweet-apartment-photo21.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Mercure Jakarta Sabang",
+      "harga": 1316480,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000523/mercure-jakarta-sabang-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Grand Whiz Hotel Kelapa Gading",
+      "harga": 590000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000702/grand-whiz-hotel-kelapa-gading-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Discovery Hotel & Convention Ancol",
+      "harga": 824176,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000490/discovery-hotel-convention-ancol-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Everyday Smart Hotel Mangga Besar",
+      "harga": 350000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000734/everyday-smart-hotel-mangga-besar-photo26.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "d'Arcici Cempaka Putih",
+      "harga": 430001,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041615/darcici-cempaka-putih-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 3,
+      "name": "Swift Inn Aeropolis Airport",
+      "harga": 215000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000043000/0000042513/swift-inn-aeropolis-airport-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Centro City Service Apartment",
+      "harga": 338000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041639/centro-city-service-apartment-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Grand Batik Inn",
+      "harga": 390000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000009000/0000008176/8176_grand-batik-inn-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "d'primahotel ITC Mangga Dua",
+      "harga": 515262,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041684/dprimahotel-itc-mangga-dua-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 3,
+      "name": "Bale OCasa",
+      "harga": 414400,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000546/bale-ocasa-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 2,
+      "name": "Amaris Hotel Pakuan 20",
+      "harga": 521481,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000041000/0000040489/amaris-hotel-pakuan-bogor.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Sampit Residence by Flat06",
+      "harga": 398999,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000009000/0000008979/8979_flat-06-sampit-residence-photo11.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Diradja Hotel",
+      "harga": 495000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000041000/0000040838/diradja-hotel-photo3.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Pomelotel",
+      "harga": 551282,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000558/558_pomelotel-hotel17.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "N1 Hotel",
+      "harga": 285000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000009000/0000008540/n1-hotel-photo21.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "P Hotel",
+      "harga": 420000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000040000/0000039689/p-hotel-photo1.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 2,
+      "name": "Zest Hotel 20",
+      "harga": 618310,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000039000/0000038935/zest-hotel-bogor-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Amaris Hotel Tebet 10",
+      "harga": 470000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000877/amaris-hotel-tebet-jakarta-photo13.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 4,
+      "name": "Pesona Hotel Cikarang",
+      "harga": 275001,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000071000/0000070262/pesona-hotel-cikarang-photo14.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "The Acacia 10",
+      "harga": 615000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000039000/0000038998/the-acacia-jakarta-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "SARE Suites",
+      "harga": 298999,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041666/sare-suites-photo2.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Sparks Life 10",
+      "harga": 500000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000009000/0000008318/sparks-life-jakarta-photo18.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Menteng House",
+      "harga": 450001,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000042000/0000041691/menteng-house-photo1.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Hotel Bintang Griyawisata",
+      "harga": 400000,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000009000/0000008448/hotel-bintang-griyawisata-photo8.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 3,
+      "name": "Yasmin Karawaci",
+      "harga": 524999,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000041000/0000040339/yasmin-karawaci12.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Morrissey Hotel Residences",
+      "harga": 1386001,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000066000/0000065929/morrissey-hotel-residences-photo16.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Putri Duyung Ancol",
+      "harga": 1455300,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000039000/0000038976/putri-duyung-ancol-photo7.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Amaris Hotel Senen",
+      "harga": 437500,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000712/amaris-hotel-senen-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 4,
+      "name": "L'Imperial Spatel",
+      "harga": 227500,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000082000/0000081030/limperial-spalet-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 3,
+      "name": "Amaris Hotel Citra Raya - 30",
+      "harga": 488400,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000043000/0000042065/amaris-hotel-citra-raya-tangerang-photo.400x225.jpg"
+
+
+
+
+   },
+   {
+      "id_city": 1,
+      "name": "Gran Melia 10",
+      "harga": 1633500,
+
+
+
+      "image": "https://static.misteraladin.com/images/hotel/0000001000/0000000573/gran-melia-jakarta-photo9.400x225.jpg"
+
+
+
+
+   }
+]

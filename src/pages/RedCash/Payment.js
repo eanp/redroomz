@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, } from 'react-native';
 import { Container, Header, Title, Body, Text, Content, Icon, Row, Right, Thumbnail, Left, ListItem, List, CheckBox, Button, Item, Input, Label } from 'native-base';
 import { connect } from 'react-redux';
+import Axios from 'axios';
+import { getProfile, getHistory } from '../../redux/actions/getData';
 
 const style = StyleSheet.create({
    root: {
@@ -13,7 +15,24 @@ const style = StyleSheet.create({
 });
 
 function Payment(props) {
-   const [total, setTotal] = useState()
+   const [total, setTotal] = useState(0)
+
+   async function topUp() {
+      const res = await Axios({
+         method:'post',
+         url: `http://192.168.0.115:3000/topup`,
+         data: {saldo:total} ,
+         headers: { 'Authorization': 'Bearer ' + props.auth.token }
+      })
+      console.log(res)
+      console.log(res.data)
+      if (res.data.success) {
+         props.dispatch(getHistory(props.auth.token))
+         props.dispatch(getProfile(props.auth.token))
+         props.navigation.goBack()
+      } else alert(res.data.data.status.msg)
+   }
+   console.log(total)
    return (
       <Container >
          {/* <Content padder contentContainerStyle={{ flexGrow: 1, backgroundColor:'fff', opacity:1 }}> */}
@@ -64,7 +83,8 @@ function Payment(props) {
             </ListItem>
 
             <Button danger style={{ borderRadius: 4, justifyContent: 'center',
-             marginHorizontal: 16, }} >
+             marginHorizontal: 16, }}
+             onPress={topUp} >
                <Text style={{ alignSelf: 'center' }}>Send</Text>
             </Button>
          </Content>
@@ -76,8 +96,9 @@ const mapStateToProps = state => {
 
    return {
       auth: state.auth
+      , profile: state.profile
    }
 }
 
-export default Payment;
-// export default connect(mapStateToProps)(Login)
+// export default Payment;
+export default connect(mapStateToProps)(Payment)

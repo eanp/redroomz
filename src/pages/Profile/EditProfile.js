@@ -1,9 +1,11 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Image,TouchableOpacity } from 'react-native';
-import { Container, Header, Title, Body, Item, Form, Label, Input, Text, DatePicker, Content, Icon, H1, Toast, Row, Right, Thumbnail, Left } from 'native-base';
+import { StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Container, Header, Title, Body, Item, Form, Label, Input, Text, DatePicker, Content, Icon, H1, Toast, Row, Right, Thumbnail, Left, Button } from 'native-base';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
+import { postProfile } from '../../redux/actions/postData';
+import Axios from 'axios';
 
 const style = StyleSheet.create({
   root: {
@@ -16,8 +18,8 @@ const style = StyleSheet.create({
 
 function EditProfile(props) {
 
-  const [input, setInput] = useState({})
-
+  const [input, setInput] = useState(props.profile.data)
+  const [avatar, setAvatar] = useState({})
   const postLogin = async () => {
     //  await props.dispatch(getAuth(input)
     props.navigation.navigate('Search')
@@ -63,15 +65,68 @@ function EditProfile(props) {
 
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
+        setAvatar(response)
         setInput({
           ...input,
-          avatarSource: source,
+          image: source,
         });
       }
     });
   }
 
+  const postdata = async() => {
+    console.log(createFormData(avatar,input))
+    // props.dispatch(postProfile(props.auth.token, createFormData(avatar,input)))
+    props.dispatch(postProfile(props.auth.token, {...input, image: avatar.uri}))
+    // const res = await Axios({
+    //   method: 'put',
+    //   url: `http://192.168.0.115:3000/profile`,
+    //   data : createFormData(avatar, input),
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //     "cache-control": "no-cache",
+    //     "Postman-Token": "8bdabec9-2814-4e70-85e9-a43a9f30b174",
+    //     "processData": false,
+    //     "contentType": false,
+    //     "mimeType": "multipart/form-data",
+    //     'Authorization': 'Bearer ' + props.auth.token  
+    //   }
+  //  }
+      // headers: { }
+  //  })
+
+    // fetch("http://localhost:3000/", {
+    //   method: "POST",
+    //   body: createFormData(avatar,input)
+    // })
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     console.log("upload succes", response);
+    //     alert("Upload success!");
+    //     this.setState({ photo: null });
+    //   })
+    //   .catch(error => {
+    //     console.log("upload error", error);
+    //     alert("Upload failed!");
+    //   });
+  };
+
+  const createFormData = (photo, body) => {
+    const data = new FormData();
+    
+    Object.keys(body).forEach(key => {
+      data.append(key, body[key]);
+    });
+
+    // data.append("image", {
+    //   name: photo.fileName,
+    //   type: photo.type,
+    //   uri:photo.uri
+    // });
+    return data;
+  };
+
+  console.log(input)
 
   return (
     <Container >
@@ -82,17 +137,20 @@ function EditProfile(props) {
             name="arrow-back" type='MaterialIcons' />
         </Left>
         <Body style={{ flex: 2 }}>
-          <Title style={{ color: '#000', alignSelf: 'center' }} >Edit Profil</Title>
+          <Title style={{ color: '#000', alignSelf: 'center' }} >Edit Profile</Title>
         </Body>
         <Right style={{ justifyContent: 'center', flex: 1 }} >
-          <Text style={{ color: 'red' }}>Save</Text>
+          <Button transparent
+          onPress={postdata}>
+            <Text style={{ color: 'red' }}>Save</Text>
+          </Button>
         </Right>
       </Header>
 
       <Content padder>
         <TouchableOpacity onPress={selectPhotoTapped.bind(this)}>
           <Image
-            source={input.avatarSource}
+            source={input.image}
             borderRadius={40}
             style={style.picture}
           />
@@ -100,34 +158,24 @@ function EditProfile(props) {
 
         <Form style={{ marginBottom: 'auto', marginTop: 16, paddingRight: 16, justifyContent: 'flex-start' }} >
           <Text style={{ marginLeft: 12 }}>Full Name</Text>
-          <Row >
-            <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex: 1 }} >
-              <Input placeholder="First Name"
-                style={{ paddingLeft: 8, flex: 1 }}
-                value={input.first_name}
-                selectionColor={'#c00'}
-                onChangeText={(e) => setInput({ ...input, first_name: e })}
-              />
-            </Item>
-            <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex: 1 }} >
-              <Input placeholder="Last Name"
-                value={input.last_name}
-                style={{ paddingLeft: 8, flex: 1, paddingLeft: 16 }}
-                selectionColor={'#c00'}
-                onChangeText={(e) => setInput({ ...input, last_name: e })} />
-            </Item>
-          </Row>
+          <Item style={{ marginBottom: 16, backgroundColor: '#f9f9f9', borderRadius: 4, flex: 1 }} >
+            <Input placeholder="Name"
+              style={{ paddingLeft: 8, flex: 1 }}
+              value={input.name}
+              selectionColor={'#c00'}
+              onChangeText={(e) => setInput({ ...input, name: e })}  />
+          </Item>
+
 
           <Text style={{ marginLeft: 12 }}>Phone</Text>
           <Item inlineLabel style={{ marginBottom: 16, backgroundColor: '#f9f9f9' }} >
             <Label
               style={{ paddingLeft: 8 }}>+62</Label>
             <Input placeholder="Enter Phone Number"
-              value={input.phone}
+              value={input.no_hp}
               selectionColor={'#c00'}
               keyboardType='phone-pad'
-              onChangeText={(e) => setInput({ ...input, phone: e })}
-            />
+              onChangeText={(e) => setInput({ ...input, no_hp: e })} />
           </Item>
 
           <Text style={{ marginLeft: 12 }}>Birthday</Text>
@@ -139,9 +187,10 @@ function EditProfile(props) {
               animationType={"fade"}
               androidMode={"default"}
               placeHolderText="Not Set Yet"
+              value={new Date(input.birthday)}
               textStyle={{ color: "green" }}
               placeHolderTextStyle={{ color: "#d3d3d3" }}
-            // onDateChange={setDate}
+            onDateChange={(e)=> setInput({ ...input, birthday: e }) }
             />
             <Icon name='chevron-down' style={{ marginLeft: 'auto' }} type='MaterialCommunityIcons' />
           </Item>
@@ -165,9 +214,10 @@ function EditProfile(props) {
 const mapStateToProps = state => {
 
   return {
-    auth: state.auth
+    auth: state.auth,
+    profile: state.profile
   }
 }
 
-export default EditProfile;
-// export default connect(mapStateToProps)(Login)
+// export default EditProfile;
+export default connect(mapStateToProps)(EditProfile)

@@ -62,7 +62,7 @@ const cart = (state = initialState, action) => {
       return {
         ...state,
         status: action.payload.data,
-        token: action.payload.data.auth,
+        token: action.payload.data.token,
         isLoading: false,
         isError: false,
       };

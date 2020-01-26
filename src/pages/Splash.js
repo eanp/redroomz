@@ -3,14 +3,17 @@ import { StyleSheet, View, ImageBackground, StatusBar, Image } from 'react-nativ
 
 import image from '../assets/splash.png';
 import cover from '../assets/bgCover.png';
+import { connect } from 'react-redux';
 
 
 function SplashScreen(props) {
 
   useEffect(() => {
     setTimeout(() => {
-      props.navigation.navigate('Login')
-    }, 2000);
+      if (props.auth.token) {
+        props.navigation.navigate('Search')
+      }else props.navigation.navigate('Login')
+    }, 1000);
   }, [props.navigation])
 
   return (
@@ -27,4 +30,11 @@ function SplashScreen(props) {
   );
 }
 
-export default SplashScreen;
+const mapStateToProps = state => {
+  return {
+     auth: state.auth,
+  }
+}
+
+export default connect(mapStateToProps)(SplashScreen)
+// export default SplashScreen;

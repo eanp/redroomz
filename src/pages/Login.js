@@ -1,8 +1,10 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import { View, StyleSheet, Image} from 'react-native';
-import { Button, Container, Header, Title, Body, Item, Form, Label, Input, Text, Content, Icon, H1, Toast, Row, Right, Thumbnail, Left } from 'native-base';
+import { Button, Container, Header, Title, Body, Item, Form, Label, Input, Text, Content, Icon, H1, Toast, Row, Right, Thumbnail, Left, Spinner } from 'native-base';
 import logo from '../assets/img/logo.png'
 import { connect } from 'react-redux';
+import { getAuth } from '../redux/actions/getData';
+import ReactNativeModal from 'react-native-modal';
 
 const style = StyleSheet.create({
   root: {
@@ -13,20 +15,22 @@ const style = StyleSheet.create({
 });
 
 function Login(props) {
+  const [modalVisible, setModalVisible] = useState(false)
   const [input, setInput] = useState({})
 
-//   useEffect(() => {
-//     if (props.auth.token) {
-//       props.navigation.navigate('Home')
-//     } 
-//   }, [props.auth.token])
+  useEffect(() => {
+    if (props.auth.token) {
+      props.navigation.navigate('Search')
+    } 
+  }, [props.auth.token])
 
   const postLogin = async ()=>{
-   //  await props.dispatch(getAuth(input)
-    props.navigation.navigate('Profile')
+    setModalVisible(true)
+    await props.dispatch(getAuth(input));
     console.log(props.auth)
-    if(props.auth.status.success) props.navigation.navigate('Home')
-    else if(props.auth.isError) {Toast.show({
+    setModalVisible(false)
+    if(props.auth.status.success) props.navigation.navigate('Search')
+    else if((props.auth.isError)) {Toast.show({
       text: "Terdapat Error di database",
       buttonText: "Okay",
       duration: 2000
@@ -120,6 +124,11 @@ function Login(props) {
              </Button>
           </Row>
         </Content>
+        <ReactNativeModal isVisible={modalVisible}>
+        <View style={{}}>
+          <Spinner />
+        </View>
+      </ReactNativeModal>
     </Container>
   );
 }
@@ -131,5 +140,5 @@ const mapStateToProps = state => {
   }
 }
 
-export default Login
-// export default connect(mapStateToProps)(Login)
+// export default Login
+export default connect(mapStateToProps)(Login)

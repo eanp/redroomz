@@ -5,33 +5,33 @@ import qs from 'qs'
 import { APP_URL } from './config'
 
 
-const url = "http://192.168.0.110:8080"
+const url = "http://192.168.0.115:3000"
 
 export const getAuth = (data) => {
    return {
       type: 'GET_AUTH',
       payload: axios({
       method: 'post',
-         url: `${url}/user/login`,
+         url: `${url}/login`,
          data
       })
    }
 }
 
-export const getItems = (query) => {
+export const getHotels = (query) => {
    return {
-      type: 'GET_ITEM_LIST',
+      type: 'GET_HOTEL_LIST',
       payload: axios({
          method: 'get',
-         url: `${url}/item`,
-         params: query
+         url: `${url}/hotel`,
+         params : query
       })
    }
 }
 
-export const getItemDetail = (id) => {
+export const getHotelDetail = (id) => {
    return {
-      type: 'GET_ITEM_DETAIL',
+      type: 'GET_HOTEL_DETAIL',
       payload: axios({
          method: 'get',
          url: `${url}/item/${id}`
@@ -50,9 +50,31 @@ export const getProfile = (token) => {
    }
 }
 
-export const getCheckout = (token) => {
+export const getBooking = (token) => {
    return {
-      type: 'GET_CHECKOUT',
+      type: 'GET_BOOKING',
+      payload: axios({
+         method: 'get',
+         url: `${url}/booking`,
+         headers: { 'Authorization': 'Bearer ' + token }
+      })
+   }
+}
+
+export const getHistory = (token) => {
+   return {
+      type: 'GET_HISTORY',
+      payload: axios({
+         method: 'get',
+         url: `${url}/history`,
+         headers: { 'Authorization': 'Bearer ' + token }
+      })
+   }
+}
+
+export const getBill = (token) => {
+   return {
+      type: 'GET_BILL',
       payload: axios({
          method: 'get',
          url: `${url}/checkout`,
@@ -61,54 +83,4 @@ export const getCheckout = (token) => {
    }
 }
 
-export const getDetailCheckout = (token,id) => {
-   return {
-      type: 'GET_DETAILCHECKOUT',
-      payload: axios({
-         method: 'get',
-         url: `${url}/checkout/detail/${id}`,
-         headers: { 'Authorization': 'Bearer ' + token }
-      })
-   }
-}
 
-export const getCart = (token) => {
-   return {
-      type: 'GET_CART',
-      payload: axios({
-         method: 'get',
-         url: `${url}/cart`,
-         headers: { 'Authorization': 'Bearer ' + token }
-      })
-   }
-}
-
-export const getReview = (id_item) => {
-   return {
-      type: 'GET_REVIEW',
-      payload: axios({
-         method: 'get',
-         url: `${url}/review/${id_item}`,
-         // headers: { 'Authorization': 'Bearer ' + token }
-      })
-   }
-}
-
-
-export const getRestaurants = () => {
-   return {
-      type: 'GET_RESTAURANTS',
-      payload: axios({
-         method: 'get',
-         url: `${url}/restaurant`,
-         // headers: { 'Authorization': 'Bearer ' + token }
-      })
-   }
-}
-
-export const postEmployee = (data) => {
-   return {
-      type: 'POST_EMPLOYEE',
-      payload: axios.post(url, qs.stringify(data))
-   }
-}
