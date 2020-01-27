@@ -4,7 +4,7 @@ import qs from 'qs'
 import { APP_URL } from './config'
 
 
-const url = "http://192.168.0.115:3000"
+const url = "http://3.90.3.168:3000"
 
 
 export const postLogout = (token) => {

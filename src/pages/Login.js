@@ -29,8 +29,8 @@ function Login(props) {
     await props.dispatch(getAuth(input));
     console.log(props.auth)
     setModalVisible(false)
-    if(props.auth.status.success) props.navigation.navigate('Search')
-    else if((props.auth.isError)) {Toast.show({
+    // if(props.auth.status.success) props.navigation.navigate('Search')
+    if((props.auth.isError)) {Toast.show({
       text: "Terdapat Error di database",
       buttonText: "Okay",
       duration: 2000

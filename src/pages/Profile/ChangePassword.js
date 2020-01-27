@@ -33,7 +33,7 @@ function ChangePassword(props) {
       }
       const res = await Axios({
          method:'put',
-         url: `http://192.168.0.115:3000/profile/change_password`,
+         url: `http://3.90.3.168:3000/profile/change_password`,
          data: input ,
          headers: { 'Authorization': 'Bearer ' + props.auth.token }
       })
@@ -103,17 +103,17 @@ function ChangePassword(props) {
             </Form>
          </Content>
          <ReactNativeModal isVisible={modalVisible}  >
-            <View style={{}}>
+            {props.auth.isLoading && <View style={{}}>
                <Spinner />
-            </View>
+            </View>}
 
-            <View style={{ backgroundColor: '#eee', padding: 16, }}>
+            {!(props.auth.isLoading) && <View style={{ backgroundColor: '#eee', padding: 16, }}>
                <Text>Change password instruction has been send to your email</Text>
                <Button style={{ borderRadius: 4, backgroundColor: 'red' }}
-                  onPress={() => setModalVisible(false)}>
+                  onPress={() => {setModalVisible(false); props.navigation.goBack()}}>
                   <Text>finish</Text>
                </Button>
-            </View>
+            </View>}
          </ReactNativeModal>
 
       </Container>

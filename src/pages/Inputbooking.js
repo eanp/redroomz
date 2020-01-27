@@ -11,6 +11,7 @@ import {
 import Imageroom from '../assets/hotel1.jpg';
 import { connect } from 'react-redux';
 import { postBooking } from '../redux/actions/postData';
+import { getProfile } from '../redux/actions/getData';
 
 function Inputbooking(props) {
 
@@ -19,12 +20,13 @@ function Inputbooking(props) {
     console.log({...data, ...input})
     
     const postBook = async() => {
-        await props.dispatch(postBooking(props.auth.token, {...data, ...input},data.id_hotel))     
+        await props.dispatch(postBooking(props.auth.token, {...data, ...input},data.id_hotel));    
+        props.dispatch(getProfile(props.auth.token));
         console.log(props.booking.status)
-        if(props.booking.status.success){
-            props.navigation.popToTop()
-            // props.navigation.goBack('SearchHotels')
-        } else alert('ada kesalahan di database')
+        props.navigation.popToTop()
+        // if(props.booking.status.success){
+        //     // props.navigation.goBack('SearchHotels')
+        // } else alert('ada kesalahan di database')
     }
     return (
         <View style={{ backgroundColor: 'white', flex: 1 }}>

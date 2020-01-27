@@ -53,13 +53,14 @@ class Headbar extends Component {
             <Badge
               style={{
                 height: 12,
-                width: 35,
+                width: 50,
                 marginTop: -28,
                 marginLeft: 10,
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              <Text style={{ fontSize: 10, color: 'white' }}>{(this.props.saldo/1000).toFixed(0)}k</Text>
+              <Text style={{ fontSize: 9, color: 'white' }}>
+                {this.props.saldo>1000000?(this.props.saldo/1000000).toFixed(2)+'M':(this.props.saldo/1000000).toFixed(0)+'K'}</Text>
             </Badge>
           </View>
           <View style={(styles.icontag, { marginLeft: 10 })}>

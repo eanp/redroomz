@@ -42,6 +42,8 @@ function Profile(props) {
                <Text style={style.profile}>
                   Profile</Text>
             </ImageBackground>
+            {props.profile.data &&
+            <>
             <Image
                source={{uri:props.profile.data.image}}
                // source={require('../../assets/banner.jpg')}
@@ -54,9 +56,11 @@ function Profile(props) {
                <Text note>{props.profile.data.email}</Text>
                <Text note>{props.profile.data.no_hp}</Text>
             </View>
+            </>}
 
             <List>
-               <ListItemSetting title={'My RedCash '+ props.profile.data.saldo} itemHeader onPress={()=>props.navigation.navigate('RedCash')} />
+               <ListItemSetting title={'My RedCash '+ ((props.profile.data && props.profile.data.saldo) || 0)} 
+               itemHeader onPress={()=>props.navigation.navigate('RedCash')} />
                <ListItemSetting title='Loyalty Program' 
                   left={<Badge danger ><Text>New</Text></Badge>} />
                <ListItemSetting title='Choose Default Payment Method' />

@@ -14,9 +14,9 @@ const style = StyleSheet.create({
     padding: 16,
     justifyContent: 'center'
   },
-  inputText:{
-    marginBottom: 16,  paddingBottom:8, borderColor:'red'
- }
+  inputText: {
+    marginBottom: 16, paddingBottom: 8, borderColor: 'red'
+  }
 });
 
 function ForgotPass(props) {
@@ -26,9 +26,9 @@ function ForgotPass(props) {
   const postForgot = async () => {
     const res = await Axios({
       method: 'post',
-      url: `http://192.168.0.115:3000/forgot_password`,
+      url: `http://3.90.3.168:3000/forgot_password`,
       data: input,
-   })
+    })
     setModalVisible(true)
     console.log(res.data)
     if (res.data.success) props.navigation.goBack()
@@ -38,8 +38,8 @@ function ForgotPass(props) {
     <Container >
       <Header transparent >
         <Left style={{ justifyContent: 'center', flex: 1 }}>
-          <Icon onPress={()=>props.navigation.goBack()}
-          name="arrow-back" type='MaterialIcons' />
+          <Icon onPress={() => props.navigation.goBack()}
+            name="arrow-back" type='MaterialIcons' />
 
         </Left>
         <Body style={{ justifyContent: 'center', flex: 6, marginTop: 30 }}>
@@ -61,7 +61,7 @@ function ForgotPass(props) {
           Enter Your Email below to reset your password
           </Text>
 
-        <Form style={{ marginBottom: 'auto', marginTop: 48,  }} >
+        <Form style={{ marginBottom: 'auto', marginTop: 48, }} >
           <Item floatingLabel style={style.inputText} >
             <Label style={{ color: 'red' }} >Email Address</Label>
             <Input
@@ -80,17 +80,17 @@ function ForgotPass(props) {
         </Form>
       </Content>
       <ReactNativeModal isVisible={modalVisible}  >
-        <View style={{  }}>
+        {props.auth.isLoading && <View style={{}}>
           <Spinner />
-        </View>
+        </View>}
 
-        <View style={{backgroundColor:'#eee', padding:16, }}>
+        {!(props.auth.isLoading) && <View style={{ backgroundColor: '#eee', padding: 16, }}>
           <Text>Change password instruction has been send to your email</Text>
-          <Button style={{borderRadius:4, backgroundColor:'red'}}
-           onPress={() => setModalVisible(false)}>
+          <Button style={{ borderRadius: 4, backgroundColor: 'red' }}
+            onPress={() => { setModalVisible(false); props.navigation.goBack() }}>
             <Text>finish</Text>
           </Button>
-        </View>
+        </View>}
       </ReactNativeModal>
 
     </Container>

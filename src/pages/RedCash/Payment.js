@@ -20,7 +20,7 @@ function Payment(props) {
    async function topUp() {
       const res = await Axios({
          method:'post',
-         url: `http://192.168.0.115:3000/topup`,
+         url: `http://3.90.3.168:3000/topup`,
          data: {saldo:total} ,
          headers: { 'Authorization': 'Bearer ' + props.auth.token }
       })
@@ -75,7 +75,7 @@ function Payment(props) {
                <Item floatingLabel style={{ marginVertical: 24 }}>
                   <Label>Total</Label>
                   <Input
-                     value={total && total}
+                     value={total && `${total}`}
                      onChangeText={(e) => setTotal(e)}
                      selectionColor={'#c00'}
                      keyboardType='number-pad' />
