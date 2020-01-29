@@ -1,11 +1,11 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useRef, useEffect } from 'react'
 import {
     Text, View, StyleSheet, StatusBar, ScrollView,
     TouchableOpacity, TextInput, Image, ImageBackground
 } from 'react-native'
 import {
     Container, Header, Content, Card, CardItem, Icon, Form, Item, Input, Label,
-    ScrollableTab, Right, Tab, Tabs, TabHeading, Badge, Left, Body, Title, Footer
+    ScrollableTab, Right,  Left, Body, Title, Footer
 } from 'native-base';
 
 import Imageroom from '../assets/hotel1.jpg';
@@ -17,16 +17,23 @@ function Inputbooking(props) {
 
     const [input, setInput] = useState(props.profile.data)
     const data = props.navigation.state.params.data;
-    console.log({...data, ...input})
-    
-    const postBook = async() => {
-        await props.dispatch(postBooking(props.auth.token, {...data, ...input},data.id_hotel));    
+    console.log({ ...data, ...input })
+    const mount = useRef(false)
+
+    useEffect(() => {
+        if (mount.current) {
+            if (props.booking.status.success) {
+                props.navigation.popToTop();
+                // props.navigation.goBack('SearchHotels')
+            } else alert(props.booking.status.msg)
+        } else mount.current = true;
+    }, [props.booking.status]);
+
+    const postBook = async () => {
+        await props.dispatch(postBooking(props.auth.token, { ...data, ...input }, data.id_hotel));
         props.dispatch(getProfile(props.auth.token));
         console.log(props.booking.status)
-        props.navigation.popToTop()
-        // if(props.booking.status.success){
-        //     // props.navigation.goBack('SearchHotels')
-        // } else alert('ada kesalahan di database')
+
     }
     return (
         <View style={{ backgroundColor: 'white', flex: 1 }}>
@@ -107,20 +114,20 @@ function Inputbooking(props) {
                                 <Item floatingLabel >
                                     <Label style={{ fontSize: 15 }}>Email</Label>
                                     <Input keyboardType="email-address"
-                                    value={input.email}
-                                    onChangeText={v=> setInput({...input, email:v})} />
+                                        value={input.email}
+                                        onChangeText={v => setInput({ ...input, email: v })} />
                                 </Item>
                                 <Item floatingLabel>
                                     <Label style={{ fontSize: 15 }}>Name</Label>
                                     <Input
-                                    value={input.name}
-                                    onChangeText={v=> setInput({...input, name:v})} />
+                                        value={input.name}
+                                        onChangeText={v => setInput({ ...input, name: v })} />
                                 </Item>
                                 <Item floatingLabel >
                                     <Label style={{ fontSize: 15 }}>Phone </Label>
-                                    <Input keyboardType="phone-pad" 
-                                    value={input.no_hp}
-                                    onChangeText={v=> setInput({...input, no_hp:v})} />
+                                    <Input keyboardType="phone-pad"
+                                        value={input.no_hp}
+                                        onChangeText={v => setInput({ ...input, no_hp: v })} />
                                 </Item>
                             </Form>
 
@@ -166,7 +173,7 @@ const mapStateToProps = state => {
     return {
         profile: state.profile,
         auth: state.auth,
-        booking:state.booking
+        booking: state.booking
     }
 }
 

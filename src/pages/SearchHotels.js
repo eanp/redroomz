@@ -97,8 +97,9 @@ function FormModal({setModalVisible,setQuery, ...props }) {
             thumbTintColor='#f00'
             minimumTrackTintColor="#F00"
             maximumTrackTintColor="#000000"
+            onValueChange={(v)=> setInputquery({...inputquery, price:v}) }
          />
-         <Text>Harga IDR </Text>
+         <Text>Harga IDR {inputquery.price} </Text>
 
          <Label style={{ marginTop: 16 }}>Sort By</Label>
          <Picker
@@ -115,39 +116,41 @@ function FormModal({setModalVisible,setQuery, ...props }) {
 
          <Text style={{ marginTop: 16 }}>Sort</Text>
          <Row style={{ height: 'auto', marginVertical: 12 }}>
-            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
-               <Button danger transparent active
-               onPress={(v)=>setInputquery({...inputquery, sort:'asc'})}
+            <View style={{ borderWidth: 1, borderColor: inputquery.sort==='asc'? '#f11':'#000',
+             flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
+               <Button danger={inputquery.sort==='asc'} dark={inputquery.sort!=='asc'} transparent active
+               onPress={()=>setInputquery({...inputquery, sort:'asc'})}
                ><Text>Asc</Text></Button>
             </View>
-            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
-               <Button danger transparent active
-               onPress={(v)=>setInputquery({...inputquery,sort:'desc'})}
+            <View style={{ borderWidth: 1, borderColor: inputquery.sort==='desc'? '#f11':'#000',
+            flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
+               <Button danger={inputquery.sort==='desc'} dark={inputquery.sort!=='desc'} transparent active
+               onPress={()=>setInputquery({...inputquery,sort:'desc'})}
                ><Text>Desc</Text></Button>
             </View>
          </Row>
 
          <Text style={{ marginTop: 16 }}>Property Type</Text>
          <Row style={{ height: 'auto', marginVertical: 12 }}>
-            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
-               <Button danger transparent active><Text>All</Text></Button>
+            <View style={{ borderWidth: 1, borderColor: '#000', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
+               <Button  dark transparent active><Text>All</Text></Button>
             </View>
-            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1 }}>
-               <Button danger transparent active><Text>All</Text></Button>
+            <View style={{ borderWidth: 1, borderColor: '#000', flex: 1 }}>
+               <Button  dark transparent active><Text>Hotel</Text></Button>
             </View>
-            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
-               <Button danger transparent active><Text>All</Text></Button>
+            <View style={{ borderWidth: 1, borderColor: '#000', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
+               <Button  dark transparent active><Text>Co living</Text></Button>
             </View>
          </Row>
 
 
          <Text style={{ marginTop: 16 }}>Payment Method</Text>
          <Row style={{ height: 'auto', marginVertical: 12 }}>
-            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
-               <Button danger transparent active><Text>Pay At Hotel</Text></Button>
+            <View style={{ borderWidth: 1, borderColor: '#000', flex: 1, borderTopLeftRadius: 30, borderBottomLeftRadius: 30 }}>
+               <Button dark transparent active><Text>Pay At Hotel</Text></Button>
             </View>
-            <View style={{ borderWidth: 1, borderColor: '#f11', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
-               <Button danger transparent active><Text>Red Cash</Text></Button>
+            <View style={{ borderWidth: 1, borderColor: '#000', flex: 1, borderTopRightRadius: 30, borderBottomRightRadius: 30 }}>
+               <Button dark transparent active><Text>Red Cash</Text></Button>
             </View>
          </Row>
 

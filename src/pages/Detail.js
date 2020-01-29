@@ -29,23 +29,6 @@ import McIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MfIcon from 'react-native-vector-icons/FontAwesome5';
 import MzIcon from 'react-native-vector-icons/Ionicons';
 
-import coliving from '../assets/colivingbanner.jpg';
-import whitelogo from '../assets/rrwhite.png';
-import offer1 from '../assets/offer1.png';
-import offer2 from '../assets/offer2.png';
-import offer3 from '../assets/offer3.png';
-import offer4 from '../assets/offer4.png';
-import enjoy1 from '../assets/enjoy1.png';
-import enjoy2 from '../assets/enjoy2.png';
-import enjoy3 from '../assets/enjoy3.png';
-import enjoy4 from '../assets/enjoy4.png';
-import amnesty from '../assets/amnesty.png';
-import bottom from '../assets/bottom.png';
-import howtobook1 from '../assets/howtobook1.png';
-import howtobook2 from '../assets/howtobook2.png';
-import howtobook3 from '../assets/howtobook3.png';
-import howtobook4 from '../assets/howtobook4.png';
-
 import RecomendedProperties from '../component/RecomendedProperties';
 import NearbyProperties from '../component/NearbyProperties';
 import PromosOffers from '../component/PromosOffers';
@@ -157,7 +140,7 @@ export default class App extends Component {
     this.setDateIn = this.setDateIn.bind(this);
     this.setDate = this.setDate.bind(this);
   }
-  onValueChange2(value: number) {
+  onValueChange2(value) {
     this.setState({
       room: value,
     });
@@ -179,6 +162,18 @@ export default class App extends Component {
     let number = this.totalAmount(price)
     return 'Rp ' + number.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
   }
+
+  gotoBooking(data){
+    const params  =  {...data, ...this.state, total: this.totalAmount(data.price) ,
+      nights: moment(this.state.checkout).startOf('day').diff(moment(this.state.checkin).startOf('day'),'days'), }
+    if (params.nights === 0 ) {
+      alert('at least stay for 1 night');
+      return;
+    }
+    this.props.navigation.navigate('Inputbooking',{data: params});
+  }
+  
+
   render() {
     const data = this.props.navigation.state.params.data
     return (
@@ -329,9 +324,7 @@ export default class App extends Component {
             </View>
             <View style={{ left: 60, justifyContent: 'center' }}>
               <TouchableOpacity 
-              onPress={() => this.props.navigation.navigate('Inputbooking',
-               {data: {...data, ...this.state, total: this.totalAmount(data.price) ,
-               nights: moment(this.state.checkout).startOf('day').diff(moment(this.state.checkin).startOf('day'),'days'), } })}>
+              onPress={() => this.gotoBooking(data)}>
                 <View
                   style={{
                     height: 32,

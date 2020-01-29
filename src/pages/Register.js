@@ -144,9 +144,17 @@ function Register(props) {
           <Spinner />
         </View>}
 
-        {!props.auth.isLoading && props.auth.status &&
+        {!props.auth.isLoading && props.auth.status.success &&
          <View style={{ backgroundColor: '#eee', padding: 16, }}>
           <Text>User has been created</Text>
+          <Button style={{ borderRadius: 4, backgroundColor: 'red' }}
+            onPress={() => {setModalVisible(false);props.navigation.goBack()}}>
+            <Text>finish</Text>
+          </Button>
+        </View>}
+        {!props.auth.isLoading && !(props.auth.status.success) &&
+         <View style={{ backgroundColor: '#eee', padding: 16, }}>
+          <Text>{props.auth.status.msg}</Text>
           <Button style={{ borderRadius: 4, backgroundColor: 'red' }}
             onPress={() => {setModalVisible(false);props.navigation.goBack()}}>
             <Text>finish</Text>

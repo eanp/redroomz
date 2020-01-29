@@ -60,7 +60,7 @@ class Headbar extends Component {
                 alignItems: 'center',
               }}>
               <Text style={{ fontSize: 9, color: 'white' }}>
-                {this.props.saldo>1000000?(this.props.saldo/1000000).toFixed(2)+'M':(this.props.saldo/1000000).toFixed(0)+'K'}</Text>
+                {this.props.saldo>1000000?(this.props.saldo/1000000).toFixed(2)+'M':(this.props.saldo/1000).toFixed(0)+'K'}</Text>
             </Badge>
           </View>
           <View style={(styles.icontag, { marginLeft: 10 })}>
@@ -404,7 +404,7 @@ class App extends Component {
           <ImageBackground source={imagebanner} imageStyle=
             {{ opacity: 0.8 }} style={{ height: 270 }}>
             <View style={{ marginHorizontal: 15, marginTop: 15 }}>
-              <Headbar navigation={this.props.navigation} saldo={this.props.profile.data && this.props.profile.data.saldo || 0} />
+              <Headbar navigation={this.props.navigation} saldo={this.props.profile.data && this.props.profile.data.saldo} />
               <Headsearch />
               <Headcalendar />
               <Headbutton navigation={this.props.navigation} />

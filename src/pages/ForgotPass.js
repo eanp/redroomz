@@ -79,18 +79,15 @@ function ForgotPass(props) {
           </Button>
         </Form>
       </Content>
-      <ReactNativeModal isVisible={modalVisible}  >
-        {props.auth.isLoading && <View style={{}}>
-          <Spinner />
-        </View>}
+      <ReactNativeModal isVisible={modalVisible}>
 
-        {!(props.auth.isLoading) && <View style={{ backgroundColor: '#eee', padding: 16, }}>
+       <View style={{ backgroundColor: '#eee', padding: 16, }}>
           <Text>Change password instruction has been send to your email</Text>
           <Button style={{ borderRadius: 4, backgroundColor: 'red' }}
-            onPress={() => { setModalVisible(false); props.navigation.goBack() }}>
+            onPress={() => { setModalVisible(false); props.navigation.goBack();}}>
             <Text>finish</Text>
           </Button>
-        </View>}
+        </View>
       </ReactNativeModal>
 
     </Container>
