@@ -4,7 +4,7 @@ import {
   Text, View, StyleSheet, ScrollView,
   TouchableOpacity, Image, ImageBackground
 } from 'react-native'
-import { Badge, } from 'native-base';
+import { Badge, Spinner, } from 'native-base';
 import { withNavigation } from 'react-navigation'
 
 import MoIcon from 'react-native-vector-icons/Octicons';
@@ -34,7 +34,7 @@ import NearbyProperties from '../component/NearbyProperties';
 import PromosOffers from '../component/PromosOffers';
 import Servicebar from '../component/Servicebar';
 import { connect } from 'react-redux';
-import { getProfile } from '../redux/actions/getData';
+import { getProfile, getHotelRecommend } from '../redux/actions/getData';
 
 class Headbar extends Component {
   render() {
@@ -388,6 +388,7 @@ class Travel extends Component {
 class App extends Component {
 
   componentDidMount() {
+    this.props.dispatch(getHotelRecommend())
     this.props.dispatch(getProfile(this.props.auth.token))
     if (!(this.props.auth.token)) {
       alert('no token')
@@ -415,13 +416,10 @@ class App extends Component {
               <View><Text style={{ marginVertical: 5, left: 3, fontSize: 16 }}>Recomended Properties</Text>
               </View>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {/* <RecomendedProperties navigation={this.props.navigation} /> */}
-                <RecomendedProperties />
-                <RecomendedProperties />
-                <RecomendedProperties />
-                <RecomendedProperties />
-                <RecomendedProperties />
-                <RecomendedProperties />
+                {this.props.hotelList.isLoading && <Spinner />}
+               {!this.props.hotelList.isLoading && this.props.hotelList.recommend && this.props.hotelList.recommend.map((v,i) => 
+                <RecomendedProperties key={i} data={v} navigation={this.props.navigation} />
+               )}
               </ScrollView>
             </View>
             <View>
@@ -466,7 +464,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.auth,
-    profile:state.profile
+    profile:state.profile,
+    hotelList: state.hotelList,
   }
 }
 

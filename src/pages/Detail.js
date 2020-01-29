@@ -37,6 +37,7 @@ import Servicebar from '../component/Servicebar';
 import Imageroom from '../assets/hotel1.jpg';
 import maps from '../assets/maps.png';
 import moment from 'moment';
+import { connect } from 'react-redux';
 
 class Lines extends Component {
   render() {
@@ -129,7 +130,7 @@ function DetailTitle({ data }) {
 }
 
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -304,11 +305,9 @@ export default class App extends Component {
                 </Text>
               </View>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                <NearbyProperties />
-                <NearbyProperties />
-                <NearbyProperties />
-                <NearbyProperties />
-                <NearbyProperties />
+              {this.props.hotelList.recommend && this.props.hotelList.recommend.map((v,i) => 
+                <RecomendedProperties key={i} data={v} navigation={this.props.navigation} />
+               )}
               </ScrollView>
             </View>
           </View>
@@ -348,6 +347,15 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    hotelList: state.hotelList,
+  }
+}
+
+// export default Login
+export default connect(mapStateToProps)(App)
 
 const styles = StyleSheet.create({
   headicon: {

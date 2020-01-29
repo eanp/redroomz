@@ -28,6 +28,16 @@ export const getHotels = (query) => {
       })
    }
 }
+export const getHotelRecommend = (query) => {
+   return {
+      type: 'GET_RECOMMENDED_LIST',
+      payload: axios({
+         method: 'get',
+         url: `${url}/hotel`,
+         params : query
+      })
+   }
+}
 
 export const getHotelDetail = (id) => {
    return {

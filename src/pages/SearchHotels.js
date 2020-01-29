@@ -54,8 +54,7 @@ function SearchHotels(props) {
          <Content>
             <List>
                {props.hotelList.isLoading && 
-               <><Spinner /></>
-                  }
+               <><Spinner /></>}
 
                {!(props.hotelList.isLoading) && props.hotelList.data.data && props.hotelList.data.data.map((v,i)=>
 
